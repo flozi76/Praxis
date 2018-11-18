@@ -1,0 +1,119 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Web", "Duftfinder.Web\Duftfinder.Web.csproj", "{7B0B6857-186D-4BF2-A1EB-B35BDFF62B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Business", "Duftfinder.Business\Duftfinder.Business.csproj", "{1565C67B-9815-4499-8670-B3E7F3E4B188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Database", "Duftfinder.Database\Duftfinder.Database.csproj", "{F82129C9-F810-413E-91F3-660C77CC21C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Resources", "Duftfinder.Resources\Duftfinder.Resources.csproj", "{132468D1-6C0E-4D90-9453-4538FC167101}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Ioc", "Duftfinder.Ioc\Duftfinder.Ioc.csproj", "{3CCB98BA-5CD5-419A-A9E4-F6D28A88336A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Domain", "Duftfinder.Domain\Duftfinder.Domain.csproj", "{46370242-3DC8-4E7B-A028-1530BEC0F48F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing Projects", "Testing Projects", "{FD5EEA5E-04EA-4BA3-ADB8-25348117E31F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Duftfinder.Business", "Tests.Duftfinder.Business\Tests.Duftfinder.Business.csproj", "{E8D8264E-4D25-48CD-A752-39266B71FAA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Duftfinder.Database", "Tests.Duftfinder.Database\Tests.Duftfinder.Database.csproj", "{57D50BBB-1521-4D9F-A77C-C0EA40431591}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Duftfinder.Web", "Tests.Duftfinder.Web\Tests.Duftfinder.Web.csproj", "{26CED18B-4A5E-4109-B5E1-5FA9DB0A1DC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{67F5BF89-5003-41D3-858B-25C78F911B58}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\org.sonarqube_sonarqube-scanner-msbuildCSharp.ruleset = SonarQube\org.sonarqube_sonarqube-scanner-msbuildCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B0B6857-186D-4BF2-A1EB-B35BDFF62B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0B6857-186D-4BF2-A1EB-B35BDFF62B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0B6857-186D-4BF2-A1EB-B35BDFF62B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0B6857-186D-4BF2-A1EB-B35BDFF62B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1565C67B-9815-4499-8670-B3E7F3E4B188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1565C67B-9815-4499-8670-B3E7F3E4B188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1565C67B-9815-4499-8670-B3E7F3E4B188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1565C67B-9815-4499-8670-B3E7F3E4B188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82129C9-F810-413E-91F3-660C77CC21C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82129C9-F810-413E-91F3-660C77CC21C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82129C9-F810-413E-91F3-660C77CC21C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82129C9-F810-413E-91F3-660C77CC21C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132468D1-6C0E-4D90-9453-4538FC167101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132468D1-6C0E-4D90-9453-4538FC167101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132468D1-6C0E-4D90-9453-4538FC167101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132468D1-6C0E-4D90-9453-4538FC167101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCB98BA-5CD5-419A-A9E4-F6D28A88336A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCB98BA-5CD5-419A-A9E4-F6D28A88336A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCB98BA-5CD5-419A-A9E4-F6D28A88336A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCB98BA-5CD5-419A-A9E4-F6D28A88336A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46370242-3DC8-4E7B-A028-1530BEC0F48F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46370242-3DC8-4E7B-A028-1530BEC0F48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46370242-3DC8-4E7B-A028-1530BEC0F48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46370242-3DC8-4E7B-A028-1530BEC0F48F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D8264E-4D25-48CD-A752-39266B71FAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D8264E-4D25-48CD-A752-39266B71FAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D8264E-4D25-48CD-A752-39266B71FAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D8264E-4D25-48CD-A752-39266B71FAA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D50BBB-1521-4D9F-A77C-C0EA40431591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D50BBB-1521-4D9F-A77C-C0EA40431591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D50BBB-1521-4D9F-A77C-C0EA40431591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D50BBB-1521-4D9F-A77C-C0EA40431591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CED18B-4A5E-4109-B5E1-5FA9DB0A1DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CED18B-4A5E-4109-B5E1-5FA9DB0A1DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CED18B-4A5E-4109-B5E1-5FA9DB0A1DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CED18B-4A5E-4109-B5E1-5FA9DB0A1DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8D8264E-4D25-48CD-A752-39266B71FAA7} = {FD5EEA5E-04EA-4BA3-ADB8-25348117E31F}
+		{57D50BBB-1521-4D9F-A77C-C0EA40431591} = {FD5EEA5E-04EA-4BA3-ADB8-25348117E31F}
+		{26CED18B-4A5E-4109-B5E1-5FA9DB0A1DC3} = {FD5EEA5E-04EA-4BA3-ADB8-25348117E31F}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://duftfinder.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Duftfinder.Business\\Duftfinder.Business.csproj
+		SccProjectName1 = Duftfinder.Business
+		SccLocalPath1 = Duftfinder.Business
+		SccProjectUniqueName2 = Duftfinder.Database\\Duftfinder.Database.csproj
+		SccProjectName2 = Duftfinder.Database
+		SccLocalPath2 = Duftfinder.Database
+		SccProjectUniqueName3 = Duftfinder.Domain\\Duftfinder.Domain.csproj
+		SccProjectName3 = Duftfinder.Domain
+		SccLocalPath3 = Duftfinder.Domain
+		SccProjectUniqueName4 = Duftfinder.Ioc\\Duftfinder.Ioc.csproj
+		SccProjectName4 = Duftfinder.Ioc
+		SccLocalPath4 = Duftfinder.Ioc
+		SccProjectUniqueName5 = Duftfinder.Resources\\Duftfinder.Resources.csproj
+		SccProjectName5 = Duftfinder.Resources
+		SccLocalPath5 = Duftfinder.Resources
+		SccProjectUniqueName6 = Duftfinder.Web\\Duftfinder.Web.csproj
+		SccProjectName6 = Duftfinder.Web
+		SccLocalPath6 = Duftfinder.Web
+		SccProjectUniqueName7 = Tests.Duftfinder.Business\\Tests.Duftfinder.Business.csproj
+		SccProjectTopLevelParentUniqueName7 = Duftfinder.sln
+		SccProjectName7 = Tests.Duftfinder.Business
+		SccLocalPath7 = Tests.Duftfinder.Business
+		SccProjectUniqueName8 = Tests.Duftfinder.Database\\Tests.Duftfinder.Database.csproj
+		SccProjectTopLevelParentUniqueName8 = Duftfinder.sln
+		SccProjectName8 = Tests.Duftfinder.Database
+		SccLocalPath8 = Tests.Duftfinder.Database
+		SccProjectUniqueName9 = Tests.Duftfinder.Web\\Tests.Duftfinder.Web.csproj
+		SccProjectTopLevelParentUniqueName9 = Duftfinder.sln
+		SccProjectName9 = Tests.Duftfinder.Web
+		SccLocalPath9 = Tests.Duftfinder.Web
+	EndGlobalSection
+EndGlobal

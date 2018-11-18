@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization
+@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+@model Duftfinder.Web.Models.ConfigurationViewModel
+
+@{
+    ViewBag.Title = nameof(ConfigurationController.Edit);
+}
+
+<div class="duftfinder-content">
+    <h2>@Resources.Configuration_Configuration</h2>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "configuration-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(m => m.Key)
+        @Html.HiddenFor(m => m.Description)
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">@Resources.Configuration_Key</label>
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.Key, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">@Resources.Configuration_Value</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Value, 11, 0, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">@Resources.Configuration_Description</label>
+                <div id="configuration-description-container" class="col-md-10">
+                    @Html.DisplayFor(model => model.Description, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action(nameof(ConfigurationController.Index))" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
