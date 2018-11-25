@@ -1,0 +1,100 @@
+{"_id":{"$oid":"5ae8b5392a3e0da91010e499"},"Name":"Aktivierend, belebend","Details":"vitalisierend\r\n","CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cf"}}
+{"_id":{"$oid":"5ae8b78f2a3e0da91010e4b8"},"Name":"Hormonmodulierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b082524fb3b0b870cd95391"},"Name":"lokalanästhetisch","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607bf"}}
+{"_id":{"$oid":"5b082524fb3b0b870cd95392"},"Name":"Schmerzlindernd: Gelenke","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607bf"}}
+{"_id":{"$oid":"5b082524fb3b0b870cd95393"},"Name":"Schmerzlindernd: Muskeln","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607bf"}}
+{"_id":{"$oid":"5b082524fb3b0b870cd95394"},"Name":"Schmerzlindernd: Kopf","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607bf"}}
+{"_id":{"$oid":"5b082524fb3b0b870cd95395"},"Name":"Körpermuskeln entkrampfend, entspannend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c0"}}
+{"_id":{"$oid":"5b082524fb3b0b870cd95396"},"Name":"Glatte Muskulatur entkrampfend (spasmolytisch)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c0"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd95397"},"Name":"Bronchien entkrampfend (spasmolytisch)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c0"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd95398"},"Name":"Muskelspannung fördernd (tonisierend)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c0"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd95399"},"Name":"Hautpflegend, schützend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd9539a"},"Name":"Hautstoffwechsel anregend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd9539b"},"Name":"Haut regenerierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd9539c"},"Name":"Hautzellerneuernd (epithelisierend)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd9539d"},"Name":"Juckreiz stillend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082525fb3b0b870cd9539e"},"Name":"Wundheilung fördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd9539f"},"Name":"Narben pflegend (frische)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a1"},"Name":"Narbenberührung erleichternd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a2"},"Name":"Durchblutungsfördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a3"},"Name":"Adstingierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a4"},"Name":"Entstauend (venös oder lymphatisch)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a5"},"Name":"Lymphfluss anregend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a6"},"Name":"Aquaretisch, diuretisch","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953a7"},"Name":"Hämatomauflösend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953a8"},"Name":"Bindegewebsstabilisierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953a9"},"Name":"Zellregeneriernd, -erneuernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c2"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953aa"},"Name":"Kreislauf anregend, belebend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c3"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953ab"},"Name":"Herz- und Kreislauf schützend (stärkend)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c3"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953ac"},"Name":"Kontraktionskraft Herz reduzieren","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c3"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953ad"},"Name":"Kontraktilität erhöhen","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c3"}}
+{"_id":{"$oid":"5b082527fb3b0b870cd953ae"},"Name":"Venen tonisieren","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c3"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953af"},"Name":"Autonomes Nervensystem aufgleichend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953b0"},"Name":"Parasympathikus aktivierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953b1"},"Name":"Sympathikus aktivierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953b2"},"Name":"Neuralgien beruhigend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953b3"},"Name":"Schlaffördernd ","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953b4"},"Name":"langsame Hirnwellen aktivierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082528fb3b0b870cd953b5"},"Name":"angstlösend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953b6"},"Name":"antidepressiv","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953b7"},"Name":"stimmungsaufhellend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c4"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953b8"},"Name":"Acetylcholin","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c5"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953b9"},"Name":"Dopamin","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c5"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953ba"},"Name":"GABA: Rezeptorenempfindlichkeit steigernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c5"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953bb"},"Name":"Noradrenalin: Ausschüttung anregend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c5"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953bc"},"Name":"Serotonin (aktivierend Raphus nucleus)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c5"}}
+{"_id":{"$oid":"5b082529fb3b0b870cd953bd"},"Name":"Verdauung fördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c6"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953be"},"Name":"Entblähend (karminativ)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c6"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953bf"},"Name":"Leberunterstützend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c6"}}
+{"_id":{"$oid":"5b082526fb3b0b870cd953a0"},"Name":"Narben pflegend (alte)","Details":"Bei frischen Narben, zusätzlich epithelisierende Öle wählen","CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c1"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953c0"},"Name":"reinigend, entgiftend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c6"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953c1"},"Name":"Fördern der Gallensekretion (cholagog)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c6"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953c2"},"Name":"Enterisches Nervensystem balancierend (Stress und Ängste)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c6"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953c3"},"Name":"Thalamus: Enkephaline","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953c4"},"Name":"Thalamus: Endorphine (Glückshormone)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252afb3b0b870cd953c5"},"Name":"Hypophyse: aphrodisierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953c6"},"Name":"Epiphyse (Melatonin)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953c7"},"Name":"Hormonmodulierend: Stress (Katecholamine)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953c8"},"Name":"Hormonmodulierend: Stereoide","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953c9"},"Name":"Hormonmodulierend: Geschlechtshormone","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953ca"},"Name":"Hormonähnlich: Östrogene","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953cb"},"Name":"Menstruationsregulierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953cc"},"Name":"Menstruationsregulierend (Hypermenorrhoe)","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252bfb3b0b870cd953cd"},"Name":"Nebennierenrinde modulierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953ce"},"Name":"Kortisonähnlich wirkend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953cf"},"Name":"Pankreas anregend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953d0"},"Name":"Prostaglandinsynthese hemmend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c7"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953d1"},"Name":"Immunstimulierend, - stärkend, -ausgleichend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c8"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953d2"},"Name":"antiallergisch","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c8"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953d3"},"Name":"antihistaminisch","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c8"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953d4"},"Name":"antiseptisch, antiinfektiös","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c8"}}
+{"_id":{"$oid":"5b08252cfb3b0b870cd953d5"},"Name":"Entzündungshemmend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607c9"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953d6"},"Name":"Seelisch aufhellend, heilend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ca"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953d7"},"Name":"öffnend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ca"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953d8"},"Name":"tröstend, Geborgenheit vermittelnd, schützend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ca"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953d9"},"Name":"Beruhigend, besänftigend, aufrichtend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ca"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953da"},"Name":"Klärend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cb"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953db"},"Name":"Vertrauen fördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cb"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953dc"},"Name":"Strukturierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cb"}}
+{"_id":{"$oid":"5b08252dfb3b0b870cd953dd"},"Name":"Harmonisierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cb"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953de"},"Name":"Stärkend, Selbstvertrauen aufbauend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cc"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953df"},"Name":"Stabilisierend, erdend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cc"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e0"},"Name":"Aufbauend, erdend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cc"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e1"},"Name":"Aufbauend, Durchhalten fördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cc"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e2"},"Name":"Inspirierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cd"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e3"},"Name":"Kreativität fördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cd"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e4"},"Name":"Emotional entkrampfend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cd"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e5"},"Name":"Stress reduzierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cd"}}
+{"_id":{"$oid":"5b08252efb3b0b870cd953e6"},"Name":"Besänftigend, aufmunternd, Zuversicht entwickeln","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cd"}}
+{"_id":{"$oid":"5b08252ffb3b0b870cd953e7"},"Name":"Gedächtnisstärkend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ce"}}
+{"_id":{"$oid":"5b08252ffb3b0b870cd953e8"},"Name":"Konzentrationsfördernd","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ce"}}
+{"_id":{"$oid":"5b08252ffb3b0b870cd953e9"},"Name":"Erfrischend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607ce"}}
+{"_id":{"$oid":"5b08252ffb3b0b870cd953ea"},"Name":"Allgemein entspannend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607cf"}}
+{"_id":{"$oid":"5b08252ffb3b0b870cd953eb"},"Name":"Nerven beruhigend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d0"}}
+{"_id":{"$oid":"5b082530fb3b0b870cd953ec"},"Name":"Nerven ausgleichend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d0"}}
+{"_id":{"$oid":"5b082530fb3b0b870cd953ed"},"Name":"Nerven stärkend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d0"}}
+{"_id":{"$oid":"5b082530fb3b0b870cd953ee"},"Name":"Yin stimulierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d1"}}
+{"_id":{"$oid":"5b082530fb3b0b870cd953ef"},"Name":"Yang stimulierend","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d1"}}
+{"_id":{"$oid":"5b082530fb3b0b870cd953f0"},"Name":"Angriff von Wind","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d1"}}
+{"_id":{"$oid":"5b082530fb3b0b870cd953f1"},"Name":"Angriff von Kälte","Details":null,"CategoryId":{"$oid":"5ae3f0512a3e0da40c4607d1"}}
+{"_id":{"$oid":"5b082214fb3b09870cf0320a"},"Name":"Schmerzlindernd, - stillend","Details":"akute Schmerzen mit durchblutungsfördernden Ölen ergänzen\r\nchronische Schmerzen:\r\n- Hormone Serotonin, Enkephaline, Endorphine ergänzen\r\n- Neurotransmitter Noradrenalin ","CategoryId":{"$oid":"5ae3f0512a3e0da40c4607bf"}}
