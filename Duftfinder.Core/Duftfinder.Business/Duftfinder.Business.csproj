@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Duftfinder.Database\Duftfinder.Database.csproj" />
+    <ProjectReference Include="..\Duftfinder.Domain\Duftfinder.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

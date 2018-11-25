@@ -1,0 +1,72 @@
+﻿@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+@using Duftfinder.Web.Models
+@model SearchResultViewModel
+
+<div id="essential-oil-search-results-header" class="margin-bottom">
+    <span>@Resources.SearchEssentialOil_SearchResultAmountText @Model.SearchEssentialOilResultsAmount</span>
+</div>
+
+<table class="table">
+
+    @if (Model.SearchEssentialOilResults.Any())
+    {
+        // Only show table entries, if essential oils found.
+        <tr>
+            <th>
+                <label>@Resources.EssentialOil_Name</label>
+            </th>
+            @* Column is hidden on sm and xs devices.*@
+            <th class="d-none d-md-block">
+                <label>@Resources.EssentialOil_NameLatin</label>
+            </th>
+            <th></th>
+        </tr>
+
+        foreach (string alphabeticalIndex in Model.AlphabeticalIndexes)
+        {
+            @* List all alphabetical indexes. (A-Z)*@
+            <tr>
+                <td class="italic">
+                    <label>@alphabeticalIndex</label>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            // Order essential oils by their alphabetical indexes.
+            foreach (EssentialOilViewModel item in Model.SearchEssentialOilResults)
+            {
+                if (item.FirstLetterOfEssentialOilName == alphabeticalIndex)
+                {
+                    <tr data-item-value-id="@item.Id">
+                        <td class="row-indention">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        @* Column is hidden on sm and xs devices.*@
+                        <td class="d-none d-md-block">
+                            @Html.DisplayFor(modelItem => item.NameLatin)
+                        </td>
+                        <td>
+                            @* Button is triggered in SearchEssentialOil.js *@
+                            <a href="#" id="@item.Id" class="details-buttons">@Resources.Action_Details</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    }
+    else
+    {
+        // Show text, if no essential oils found.
+        <tr>
+            <td>
+                <label>@Resources.SearchEssentialOil_NoEssentialOilsFound</label>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,104 @@
+﻿@using System.Web.Optimization
+@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+
+@model Duftfinder.Web.Models.AssignEssentialOilEffectViewModel
+
+@{
+    ViewBag.Title = nameof(EffectController.AssignEssentialOil);
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/sliders")
+    @Scripts.Render("~/bundles/effect")
+}
+
+@{
+    // Disable Subnavigation, if Create.
+    string id = string.IsNullOrEmpty(Model.EffectId) ? "" : Model.EffectId;
+    @Html.Partial("_Subnavigation", id)
+} 
+
+<div class="duftfinder-content">
+    <h2>@Resources.Effect_AssignEssentialOil</h2>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "assign-essential-oil-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.EffectId)
+        @Html.HiddenFor(model => model.EffectName)
+
+        <div class="form-horizontal">
+            <div id="effect" class="form-group">
+                <label class="control-label col-md-2 bold">@Resources.Effect_AssignEssentialOil_Effect</label>
+                <label class="control-label col-md-10">@Html.DisplayFor(m => m.EffectName)</label>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        <label>@Resources.EssentialOil_EssentialOils</label>
+                    </th>
+                    <th>
+                        <label>@Resources.EssentialOil_NameLatin</label>
+                    </th>
+                    <th>
+                        <label>@Resources.Effect_EffectDegree</label>
+                    </th>
+                </tr>
+
+            @foreach (string alphabeticalIndex in Model.AlphabeticalIndexes)
+            {
+                @* List all alphabeticalIndexes. (A-Z)*@
+                <tr>
+                    <td class="italic">
+                        <label>@alphabeticalIndex</label>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                @* List all essentialOils. *@
+                for (int i = 0; i < Model.AssignEssentialOils.Count; i++)
+                { 
+                    // Order essential oils by their alphabetical indexes.
+                    if (Model.AssignEssentialOils[i].FirstLetterOfEssentialOilName == alphabeticalIndex)
+                    {
+                        @Html.Hidden("[" + i + "].AssignedValueId", Model.AssignEssentialOils[i].AssignedValueId)
+                        @Html.Hidden("[" + i + "].AssignedValueName", Model.AssignEssentialOils[i].AssignedValueName)
+                        <tr>
+                            <td class="row-indention">
+                                <div>@Html.DisplayFor(model => Model.AssignEssentialOils[i].AssignedValueName)</div>
+                            </td>
+                            <td>
+                                <div>@Html.DisplayFor(model => Model.AssignEssentialOils[i].NameLatin)</div>
+                            </td>
+                            @* Workaround to get items of model list in HttpPost of Controller *@
+                            <td>
+                                <div>
+                                    @* The slider *@
+                                    @Html.TextBox("[" + i + "].EffectDegree", Model.AssignEssentialOils[i].EffectDegree, new {id = "slider-" + Model.AssignEssentialOils[i].AssignedValueId, @class = "slider", data_slider_min = "0", data_slider_max = "4", data_slider_step = "1", data_slider_value = Model.AssignEssentialOils[i].EffectDegree})
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            </table>
+        
+            @{
+                // Disable "Save" button if no effects exist is list.
+                string disabled = Model.AssignEssentialOils.Count == 0 ? "disabled" : "";
+            }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action(nameof(EffectController.Index), new { lastEditedEffectId = Model.EffectId })" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary @disabled" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

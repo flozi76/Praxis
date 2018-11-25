@@ -1,0 +1,97 @@
+﻿@using System.Web.Optimization
+@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+
+@model Duftfinder.Web.Models.AssignEssentialOilEffectViewModel
+
+@{
+    ViewBag.Title = nameof(EssentialOilController.AssignEffect);
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/sliders")
+    @Scripts.Render("~/bundles/essentialOil")
+}
+
+@{
+    // Disable Subnavigation, if Create.
+    string id = string.IsNullOrEmpty(Model.EssentialOilId) ? "" : Model.EssentialOilId;
+    @Html.Partial("_Subnavigation", id)
+} 
+
+<div class="duftfinder-content">
+    <h2>@Resources.EssentialOil_AssignEffect</h2>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "assign-effect-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.EssentialOilId)
+        @Html.HiddenFor(model => model.EssentialOilName)
+
+        <div class="form-horizontal">
+            <div id="essential-oil" class="form-group">
+                <label class="control-label col-md-2 bold">@Resources.EssentialOil_AssignEffect_EssentialOil</label>
+                <label class="control-label col-md-10">@Html.DisplayFor(m => m.EssentialOilName)</label>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        <label>@Resources.Effect_Effects</label>
+                    </th>
+                    <th>
+                        <label>@Resources.EssentialOil_EffectDegree</label>
+                    </th>
+                </tr>
+
+                @foreach (KeyValuePair<string, string> category in Model.CategoryDisplayItems)
+                {
+                    @* List all categories. *@
+                    <tr>
+                        <td class="italic">
+                            <label>@category.Value</label>
+                        </td>
+                        <td></td>
+                    </tr>
+                
+                    @* List all effects for the appropriate categories. *@
+                    for (int i = 0; i < Model.AssignEffects.Count; i++)
+                    {
+                        if (Model.AssignEffects[i].CategoryIdString == category.Key)
+                        {
+                            @Html.Hidden("[" + i + "].AssignedValueId", Model.AssignEffects[i].AssignedValueId)
+                            @Html.Hidden("[" + i + "].AssignedValueName", Model.AssignEffects[i].AssignedValueName)
+                            @Html.Hidden("[" + i + "].CategoryIdString", Model.AssignEffects[i].CategoryIdString)
+                            <tr>
+                                <td class="row-indention">
+                                    <div>@Html.DisplayFor(model => Model.AssignEffects[i].AssignedValueName)</div>
+                                </td>
+                                @* Workaround to get items of model list in HttpPost of Controller *@
+                                <td>
+                                    <div>
+                                        @* The slider *@
+                                        @Html.TextBox("[" + i + "].EffectDegree", Model.AssignEffects[i].EffectDegree, new {id = "slider-" + Model.AssignEffects[i].AssignedValueId, @class = "slider", data_slider_min = "0", data_slider_max = "4", data_slider_step = "1", data_slider_value = Model.AssignEffects[i].EffectDegree})
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        
+            @{
+                // Disable "Save" button if no effects exist is list.
+                string disabled = Model.AssignEffects.Count == 0 ? "disabled" : "";
+            }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action(nameof(EssentialOilController.Index), new { lastEditedEssentialOilId = Model.EssentialOilId })" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary @disabled" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

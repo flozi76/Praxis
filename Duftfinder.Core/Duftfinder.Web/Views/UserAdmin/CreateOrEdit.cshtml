@@ -1,0 +1,112 @@
+﻿@using System.Web.Optimization
+@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+@model Duftfinder.Web.Models.UserViewModel
+
+@{
+    ViewBag.Title = nameof(UserAdminController.CreateOrEdit);
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/dialogs")
+    @Scripts.Render("~/bundles/userAdmin")
+}
+
+<div class="duftfinder-content">
+    <h2>@Resources.UserAdmin_User</h2>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "user-admin-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">@Resources.UserAdmin_FirstName</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">@Resources.UserAdmin_LastName</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">@Resources.UserAdmin_Email</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            
+            @* Hide password input if Edit. *@
+            @if (string.IsNullOrEmpty(Model.Id))
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Resources.UserAdmin_Password</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">@Resources.UserAdmin_PasswordConfirmation</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Password2, new { type = "password", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            
+            @{
+                // Can't inactivate or change role of System Admin.
+                string disabled = Model.IsSystemAdmin ? "disabled" : "";
+            }
+            <div class="form-group @disabled">
+                <div class="col-md-9">
+                    <label class="form-check-label col-md-3">@Resources.UserAdmin_IsAccountVerified</label>
+                    @* Contains the data-item-values, as they can't be retrieved from the checkbox element in JS. *@
+                    <span id="hidden-checkbox-values" data-item-id = @Model.Id data-item-name = @Model.Email></span>
+                    @Html.CheckBoxFor(model => model.IsAccountVerified, new { id = "cb-is-account-verified", @class = "form-check-input" })
+                </div>
+            </div>
+            <div class="form-group @disabled">
+                <div class="col-md-9">
+                    <label class="form-check-label col-md-3">@Resources.UserAdmin_IsConfirmed</label>
+                    @Html.CheckBoxFor(model => model.IsConfirmed, new { id = "cb-is-confirmed", @class = "form-check-input" })
+                </div>
+            </div>
+            <div class="form-group @disabled">
+                <div class="col-md-9">
+                    <label class="form-check-label col-md-3">@Resources.UserAdmin_IsInactive</label>
+                    @Html.CheckBoxFor(model => model.IsInactive, new { @class = "form-check-input" })
+                </div>
+             </div>
+            <div class="form-group @disabled">
+                <label class="control-label col-md-2">@Resources.UserAdmin_Role</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.RoleId, Model.RoleListItems, new { id = "role", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="@Url.Action(nameof(UserAdminController.Index))" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    @* Placehoder for modal dialog. Html is set in Dialog.js*@
+    <div id="dialog-modal-@Model.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
+    </div>
+</div>

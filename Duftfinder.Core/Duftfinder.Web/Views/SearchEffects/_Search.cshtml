@@ -1,0 +1,57 @@
+﻿@using Duftfinder.Domain.Dtos
+@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+@using Duftfinder.Web.Models
+@model SearchEffectsViewModel
+
+<div id="search-effects-container">
+    <h2>@Resources.SearchEffects_SearchEffects</h2>
+    <div class="margin-top-big">
+        <label>@Resources.SearchEffects_SearchEffectsDescription</label>
+    </div>
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "search-effects-form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="form-group col-md-12">
+                @* Label for "Beschwerdeausmass". Is hidden on sm and xs devices.
+                    Because of d-none d-md-block. See: https://getbootstrap.com/docs/4.0/utilities/display/*@
+                <div class="row margin-top  d-none d-md-block">
+                    <label class="control-label offset-md-9 col-md-3">@Resources.SearchEffects_EffectDegree</label>
+                </div>
+
+                @* The list with the "Wirkungen" search fields. *@
+                @for (int i = 0; i < Model.SearchEffects.Count; i++)
+                {
+                    <div class="search-effects-items row margin-bottom">
+                        <label class="control-label col-md-2">@Resources.SearchEffects_Effect</label>
+                        <div class="col-md-7">
+                            @* Workaround to get items of model list in HttpPost of Controller *@
+                            @Html.TextBox("[" + i + "].SearchEffectText", Model.SearchEffects[i].SearchEffectText, new {id = "search-effect-text-" + i, @class = "form-control search-effects-texts col-md-10 col-10", autocomplete = "off" })
+                            <input id="clear-search-@i" type="button" class="btn btn-secondary clear-search-inputs" value="X" data-item-id="@i">
+                        </div>
+
+                        @* Label for "Beschwerdeausmass" for small devices. Is placed next to the slider all other stuff. Is hidden on md and upwards devices.
+                            Because of d-none d-md-block. See: https://getbootstrap.com/docs/4.0/utilities/display/*@
+                        <div class="col-7 d-block d-sm-block d-md-none">
+                            <label class="control-label">@Resources.SearchEffects_EffectDegree</label>
+                        </div>
+
+                        @* The slider *@
+                        @Html.TextBox("[" + i + "].DiscomfortValue", Model.SearchEffects[i].DiscomfortValue, new {id = "slider-" + i, @class = "slider col-md-3", data_slider_min = "0", data_slider_max = "4", data_slider_step = "1", data_slider_value = Model.SearchEffects[i].DiscomfortValue })
+                    </div>
+                }
+            </div>                
+        </div>
+        <div id="search-effects-button-container" class="col-md-2">
+            <input id="reset-search-effects-button" type="button" value="@Resources.Action_ResetSearch" class="btn btn-secondary" />
+            <input id="search-effects-button" type="submit" value="@Resources.Action_Search" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+@* Placehoder for PartialView _EffectsSearchResults. Html is set in SearchEffects.js -> showEffectsSearchResults()
+   Loader is also displayed there. *@
+<div id="effects-search-results-container" class="margin-top-big"></div>

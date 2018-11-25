@@ -1,0 +1,88 @@
+﻿@using System.Web.Optimization
+@using Duftfinder.Resources
+@using Duftfinder.Web.Controllers
+@using Duftfinder.Web.Models
+@model IEnumerable<Duftfinder.Web.Models.UserViewModel>
+
+@{
+    ViewBag.Title = nameof(UserAdminController.Index);
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/dialogs")
+    @Scripts.Render("~/bundles/userAdmin")
+}
+
+<div id="user-admin" class="duftfinder-content">
+    <h2>@Resources.UserAdmin_UserAdmin</h2>
+
+    <p>
+        @Html.ActionLink(Resources.UserAdmin_Create, nameof(UserAdminController.CreateOrEdit))
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>@Resources.UserAdmin_LastName</label>
+            </th>
+            <th>
+                <label>@Resources.UserAdmin_FirstName</label>
+            </th>
+            <th>
+                <label>@Resources.UserAdmin_Email</label>
+            </th>
+            <th>
+                <label>@Resources.UserAdmin_IsAccountVerified</label>
+            </th>
+            <th>
+                <label>@Resources.UserAdmin_IsConfirmed</label>
+            </th>
+            <th>
+                <label>@Resources.UserAdmin_IsInactive</label>
+            </th>
+            <th>
+                <label>@Resources.UserAdmin_Role</label>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (UserViewModel item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="td-small">
+                    @Html.DisplayFor(modelItem => item.IsAccountVerified)
+                </td>
+                <td class="td-small">
+                    @Html.DisplayFor(modelItem => item.IsConfirmed)
+                </td>
+                <td class="td-small">
+                    @Html.DisplayFor(modelItem => item.IsInactive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleValueDisplayName)
+                </td>
+                <td>
+                    <div>
+                        @Html.ActionLink(Resources.Action_Edit, nameof(UserAdminController.CreateOrEdit), new { id = item.Id }) |
+                        @* Button is triggered in UserAdmin.js *@
+                        <a href="#" class="delete-buttons" data-item-id="@item.Id" data-item-name="@item.Email">@Resources.Action_Delete</a>
+                    </div>
+
+                    @* Placehoder for modal dialog. Html is set in Dialog.js*@
+                    <div id="dialog-modal-@item.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
