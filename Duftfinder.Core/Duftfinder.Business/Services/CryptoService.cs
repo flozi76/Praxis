@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Cryptography;
 using Duftfinder.Domain.Interfaces.Services;
-using log4net;
 
 namespace Duftfinder.Business.Services
 {

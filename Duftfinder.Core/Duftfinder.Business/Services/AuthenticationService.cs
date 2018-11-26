@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Duftfinder.Domain.Entities;
-using Duftfinder.Domain.Filters;
-using Duftfinder.Domain.Interfaces.Repositories;
+﻿using System.Reflection;
 using Duftfinder.Domain.Interfaces.Services;
 using log4net;
-using System.Web.Security;
 
 namespace Duftfinder.Business.Services
 {
@@ -23,13 +14,15 @@ namespace Duftfinder.Business.Services
 
         public void SignIn(string email)
         {
-            FormsAuthentication.SetAuthCookie(email, false);
+			// TODO
+            //FormsAuthentication.SetAuthCookie(email, false);
             Log.Info("SignIn");
         }
 
         public void SignOut()
         {
-            FormsAuthentication.SignOut();
+			// TODO
+            //FormsAuthentication.SignOut();
             Log.Info("SignOut");
         }
     }

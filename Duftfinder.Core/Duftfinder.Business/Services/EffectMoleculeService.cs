@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Interfaces.Repositories;
 using Duftfinder.Domain.Interfaces.Services;
-using Duftfinder.Database.Repositories;
 using Duftfinder.Domain.Helpers;
 using log4net;
 

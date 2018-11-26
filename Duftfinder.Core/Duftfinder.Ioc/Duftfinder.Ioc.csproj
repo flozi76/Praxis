@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Duftfinder.Business\Duftfinder.Business.csproj" />
+    <ProjectReference Include="..\Duftfinder.Database\Duftfinder.Database.csproj" />
+    <ProjectReference Include="..\Duftfinder.Domain\Duftfinder.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
