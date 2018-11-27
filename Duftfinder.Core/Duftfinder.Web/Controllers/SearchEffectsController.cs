@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 using Duftfinder.Domain.Dtos;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Interfaces.Services;
-using Duftfinder.Web.Helpers;
 using Duftfinder.Web.Models;
 using log4net;
-using static System.Int32;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Duftfinder.Web.Controllers
 {
@@ -120,7 +118,10 @@ namespace Duftfinder.Web.Controllers
             string[] effectNames = effects.Select(e => e.Name).ToArray();
 
             Log.Info($"Effect names '{string.Join(", ", effectNames)}' where loaded.");
-            return new JsonResult {Data = effectNames, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+
+			// TODO: check this
+            //return new JsonResult {Data = effectNames, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+            return new JsonResult( effectNames);
         }
 
         /// <summary>

@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Duftfinder.Domain.Dtos;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Helpers;
 using Duftfinder.Domain.Interfaces.Services;
-using Duftfinder.Web.Helpers;
 using Duftfinder.Web.Models;
 using log4net;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Duftfinder.Web.Controllers
@@ -295,14 +292,14 @@ namespace Duftfinder.Web.Controllers
                 if (validationResult.HasErrors)
                 {
                     Log.Error($"User with id {id} could not be deleted");
-                    return new JsonErrorResult($"{validationResult.Errors.Values.SingleOrDefault()}");
+                    return new JsonResult($"{validationResult.Errors.Values.SingleOrDefault()}");
                 }
             }
             catch (Exception e)
             {
                 // Show general error message if exception occurred.
                 Log.Error($"An unexpected error occurred while deleting: {e}");
-                return new JsonErrorResult($"{Resources.Resources.Error_UnexpectedError}");
+                return new JsonResult($"{Resources.Resources.Error_UnexpectedError}");
             }
 
             return new EmptyResult();
@@ -327,7 +324,7 @@ namespace Duftfinder.Web.Controllers
             {
                 // Get url from user mail.
                 string loginUrl = Url.Action("Login", "Account", new { email = user.Email });
-                string loginUrlFull = Url.Action("Login", "Account", new { email = user.Email }, Request?.Url?.Scheme) ?? loginUrl;
+                string loginUrlFull = Url.Action("Login", "Account", new { email = user.Email }, Request?.Scheme) ?? loginUrl;
                 Log.Info($"loginUrlFull is {loginUrlFull}");
 
                 if (loginUrlFull != null)

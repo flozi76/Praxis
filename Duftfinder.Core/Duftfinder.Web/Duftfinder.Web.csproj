@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Duftfinder.Business\Duftfinder.Business.csproj" />
+    <ProjectReference Include="..\Duftfinder.Database\Duftfinder.Database.csproj" />
+    <ProjectReference Include="..\Duftfinder.Domain\Duftfinder.Domain.csproj" />
+    <ProjectReference Include="..\Duftfinder.Ioc\Duftfinder.Ioc.csproj" />
     <ProjectReference Include="..\Duftfinder.Resources\Duftfinder.Resources.csproj" />
   </ItemGroup>
 

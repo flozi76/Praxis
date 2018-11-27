@@ -7,7 +7,6 @@ using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Helpers;
 using Duftfinder.Domain.Interfaces.Services;
-using Duftfinder.Web.Helpers;
 using Duftfinder.Web.Models;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
@@ -218,14 +217,14 @@ namespace Duftfinder.Web.Controllers
                 if (validationResult.HasErrors)
                 {
                     Log.Error($"Effect with id {id} could not be deleted");
-                    return new JsonErrorResult($"{validationResult.Errors.Values.SingleOrDefault() }");
+                    return new JsonResult($"{validationResult.Errors.Values.SingleOrDefault() }");
                 }
             }
             catch (Exception e)
             {
                 // Show general error message if exception occurred.
                 Log.Error($"An unexpected error occurred while deleting: {e}");
-                return new JsonErrorResult($"{Resources.Resources.Error_UnexpectedError }");
+                return new JsonResult($"{Resources.Resources.Error_UnexpectedError }");
             }
 
             return new EmptyResult();

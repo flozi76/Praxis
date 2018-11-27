@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Helpers;
@@ -13,6 +11,8 @@ using Duftfinder.Domain.Interfaces.Services;
 using Duftfinder.Web.Helpers;
 using Duftfinder.Web.Models;
 using log4net;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Duftfinder.Web.Controllers
 {
@@ -219,14 +219,14 @@ namespace Duftfinder.Web.Controllers
                 if (validationResult.HasErrors)
                 {
                     Log.Error($"EssentialOil with id {id} could not be deleted");
-                    return new JsonErrorResult($"{validationResult.Errors.Values.SingleOrDefault()}");
+                    return new JsonResult($"{validationResult.Errors.Values.SingleOrDefault()}");
                 }
             }
             catch (Exception e)
             {
                 // Show general error message if exception occurred.
                 Log.Error($"An unexpected error occurred while deleting: {e}");
-                return new JsonErrorResult($"{Resources.Resources.Error_UnexpectedError}");
+                return new JsonResult($"{Resources.Resources.Error_UnexpectedError}");
             }
 
             return new EmptyResult();
@@ -580,17 +580,19 @@ namespace Duftfinder.Web.Controllers
                 catch (ArgumentException e)
                 {
                     Log.Error($"Upload of file {fileName} failed. No valid file.", e);
-                    return new JsonErrorResult($"{Resources.Resources.Error_FileCannotBeUploaded} {Resources.Resources.Error_NoValidPictureFormat}");
+                    return new JsonResult($"{Resources.Resources.Error_FileCannotBeUploaded} {Resources.Resources.Error_NoValidPictureFormat}");
                 }
                 catch (Exception e)
                 {
                     Log.Error($"Upload of file {fileName} failed.", e);
-                    return new JsonErrorResult(Resources.Resources.Error_FileCannotBeUploaded);
+                    return new JsonResult(Resources.Resources.Error_FileCannotBeUploaded);
                 }
             }
 
             // Returns JsonNetResult to js and displays picture in html.
-            return new JsonNetResult { Data = new { FileName = fileName, ImageDisplayString = imageDisplayString } };
+			// TODO check this
+            //return new JsonNetResult { Data = new { FileName = fileName, ImageDisplayString = imageDisplayString } };
+            return new JsonResult(new { FileName = fileName, ImageDisplayString = imageDisplayString });
         }
 
         /// <summary>

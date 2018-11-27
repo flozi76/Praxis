@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Duftfinder.Resources", "Duftfinder.Resources\Duftfinder.Resources.csproj", "{3E02095F-FAC4-4BDE-8342-C8B00D237DFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Domain", "Duftfinder.Domain\Duftfinder.Domain.csproj", "{6ABBDEE5-42F0-479F-A5A6-DACDD3A9D1AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Duftfinder.Domain", "Duftfinder.Domain\Duftfinder.Domain.csproj", "{6ABBDEE5-42F0-479F-A5A6-DACDD3A9D1AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Ioc", "Duftfinder.Ioc\Duftfinder.Ioc.csproj", "{2CB98D79-B268-48F3-A5F9-6C49859F2CB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Duftfinder.Ioc", "Duftfinder.Ioc\Duftfinder.Ioc.csproj", "{2CB98D79-B268-48F3-A5F9-6C49859F2CB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Database", "Duftfinder.Database\Duftfinder.Database.csproj", "{DFD9E494-087A-4A63-9AD0-2DC10DED6191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Duftfinder.Database", "Duftfinder.Database\Duftfinder.Database.csproj", "{DFD9E494-087A-4A63-9AD0-2DC10DED6191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Duftfinder.Business", "Duftfinder.Business\Duftfinder.Business.csproj", "{1DECD89E-572D-4582-8856-34534C82CBA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Duftfinder.Business", "Duftfinder.Business\Duftfinder.Business.csproj", "{1DECD89E-572D-4582-8856-34534C82CBA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Duftfinder.Web", "Duftfinder.Web\Duftfinder.Web.csproj", "{C6064856-D17B-49E7-B2C9-8616463E1FF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1DECD89E-572D-4582-8856-34534C82CBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DECD89E-572D-4582-8856-34534C82CBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DECD89E-572D-4582-8856-34534C82CBA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6064856-D17B-49E7-B2C9-8616463E1FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6064856-D17B-49E7-B2C9-8616463E1FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6064856-D17B-49E7-B2C9-8616463E1FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6064856-D17B-49E7-B2C9-8616463E1FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
