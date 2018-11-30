@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Duftfinder.Domain.Entities;
-using Duftfinder.Domain.Enums;
-using Duftfinder.Domain.Helpers;
+﻿using System.Collections.Generic;
 
 namespace Duftfinder.Web.Models
 {

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Enums;
 using Duftfinder.Domain.Helpers;

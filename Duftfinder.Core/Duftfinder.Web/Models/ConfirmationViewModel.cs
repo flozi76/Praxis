@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Duftfinder.Domain.Entities;
-using Duftfinder.Domain.Enums;
-using Duftfinder.Domain.Helpers;
-
-namespace Duftfinder.Web.Models
+﻿namespace Duftfinder.Web.Models
 {
     /// <summary>
     /// Represents the model for confirmation dialogs that is used for the view.
