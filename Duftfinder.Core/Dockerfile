@@ -5,9 +5,11 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["Duftfinder.Web/Duftfinder.Web.csproj", "Duftfinder.Web/"]
+#COPY ["Duftfinder.Web/Duftfinder.Web.csproj", "Duftfinder.Web/"]
+#RUN dotnet restore "Duftfinder.Web/Duftfinder.Web.csproj"
+COPY . /.
+
 RUN dotnet restore "Duftfinder.Web/Duftfinder.Web.csproj"
-COPY . .
 WORKDIR "/src/Duftfinder.Web"
 RUN dotnet build "Duftfinder.Web.csproj" -c Release -o /app
 
