@@ -7,6 +7,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Account\**" />
+    <Compile Remove="Views\Configuration\**" />
+    <Compile Remove="Views\Effect\**" />
+    <Compile Remove="Views\EssentialOil\**" />
+    <Compile Remove="Views\Molecule\**" />
+    <Compile Remove="Views\SearchEffects\**" />
+    <Compile Remove="Views\Settings\**" />
+    <Compile Remove="Views\UserAdmin\**" />
+    <Content Remove="Views\Account\**" />
+    <Content Remove="Views\Configuration\**" />
+    <Content Remove="Views\Effect\**" />
+    <Content Remove="Views\EssentialOil\**" />
+    <Content Remove="Views\Molecule\**" />
+    <Content Remove="Views\SearchEffects\**" />
+    <Content Remove="Views\Settings\**" />
+    <Content Remove="Views\UserAdmin\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <EmbeddedResource Remove="Views\Configuration\**" />
+    <EmbeddedResource Remove="Views\Effect\**" />
+    <EmbeddedResource Remove="Views\EssentialOil\**" />
+    <EmbeddedResource Remove="Views\Molecule\**" />
+    <EmbeddedResource Remove="Views\SearchEffects\**" />
+    <EmbeddedResource Remove="Views\Settings\**" />
+    <EmbeddedResource Remove="Views\UserAdmin\**" />
+    <None Remove="Views\Account\**" />
+    <None Remove="Views\Configuration\**" />
+    <None Remove="Views\Effect\**" />
+    <None Remove="Views\EssentialOil\**" />
+    <None Remove="Views\Molecule\**" />
+    <None Remove="Views\SearchEffects\**" />
+    <None Remove="Views\Settings\**" />
+    <None Remove="Views\UserAdmin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\ConfigurationController.cs" />
+    <Compile Remove="Controllers\EffectController.cs" />
+    <Compile Remove="Controllers\EssentialOilController.cs" />
+    <Compile Remove="Controllers\MoleculeController.cs" />
+    <Compile Remove="Controllers\SearchEffectsController.cs" />
+    <Compile Remove="Controllers\SettingsController.cs" />
+    <Compile Remove="Controllers\UserAdminController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\SearchEssentialOil\Index.cshtml" />
+    <None Include="Views\SearchEssentialOil\_EssentialOilDetails.cshtml" />
+    <None Include="Views\SearchEssentialOil\_EssentialOilSearchResults.cshtml" />
+    <None Include="Views\SearchEssentialOil\_Search.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Duftfinder
@@ -12,6 +13,8 @@ namespace Duftfinder
 
 		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
+				.UseKestrel()
+				.ConfigureServices(services => services.AddAutofac())
 				.UseStartup<Startup>();
 	}
 }

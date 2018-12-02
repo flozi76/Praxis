@@ -1,85 +1,101 @@
 ﻿@using Duftfinder.Domain.Helpers
 @using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
+@using Microsoft.AspNetCore.Html
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Resources.Layout_Duftfinder</title>   
-    <link id="favicon" href="~/Content/Images/favicon.png" rel="shortcut icon" type="image/x-icon" />
-    @Styles.Render("~/Content/css")
+    <link id="favicon" href="~/images/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    @*@Styles.Render("~/Content/css")*@
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top margin-bottom">
-    <div class="container">
-        <div id="icon-container" class="col-md-2">
-            <img id="icon-dragon-fly" src="~/Content/images/logo.png" />
-        </div>
-        <div class="navbar-header col-md-10">
-            @* IMPORTANT: If new navigation item is added, make sure to highlight it in Script.js -> setActiveNavigationItem(...) *@
-            <div>
-                @Html.ActionLink(Resources.SearchEssentialOil_SearchEssentialOil, nameof(SearchEssentialOilController.Index), "SearchEssentialOil", new {area = ""}, new {id = "search-essential-oil-navigation-item", @class = "navbar-brand"})
-                @* Don't show menu, if not autheticated *@
+    <div class="navbar navbar-inverse navbar-fixed-top margin-bottom">
+        <div class="container">
+            <div id="icon-container" class="col-md-2">
+                <img id="icon-dragon-fly" src="~/images/logo.png" />
+            </div>
+            <div class="navbar-header col-md-10">
+                @* IMPORTANT: If new navigation item is added, make sure to highlight it in Script.js -> setActiveNavigationItem(...) *@
+                <div>
+                    @Html.ActionLink(Resources.SearchEssentialOil_SearchEssentialOil, nameof(SearchEssentialOilController.Index), "SearchEssentialOil", new { area = "" }, new { id = "search-essential-oil-navigation-item", @class = "navbar-brand" })
+                    @* Don't show menu, if not autheticated *@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @*@Html.ActionLink(Resources.SearchEffects_SearchEffects, nameof(SearchEffectsController.Index), "SearchEffects", new { area = "" }, new { id = "search-effects-navigation-item", @class = "navbar-brand" })*@
+                    }
+                </div>
+                @* Don't show menu, if not autheticated & not role Admin*@
                 @if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink(Resources.SearchEffects_SearchEffects, nameof(SearchEffectsController.Index), "SearchEffects", new {area = ""}, new {id = "search-effects-navigation-item", @class = "navbar-brand"})
+                    if (User.IsInRole(Constants.Admin))
+                    {
+                        @*<div>
+                            @Html.ActionLink(Resources.EssentialOil_EssentialOils, nameof(EssentialOilController.Index), "EssentialOil", new { area = "" }, new { id = "essential-oil-navigation-item", @class = "navbar-brand" })
+                            @Html.ActionLink(Resources.Effect_Effects, nameof(EffectController.Index), "Effect", new { area = "" }, new { id = "effect-navigation-item", @class = "navbar-brand" })
+                            @Html.ActionLink(Resources.Molecule_Molecules, nameof(MoleculeController.Index), "Molecule", new { area = "" }, new { id = "molecule-navigation-item", @class = "navbar-brand" })
+                            @Html.ActionLink(Resources.UserAdmin_UserAdmin, nameof(UserAdminController.Index), "UserAdmin", new { area = "" }, new { id = "user-admin-navigation-item", @class = "navbar-brand" })
+                            <a href="@Url.Action(nameof(ConfigurationController.Index), "Configuration")" id="configuration-navigation-item">
+                                <i id="configuration-icon" class="fa fa-cog fa-2x float-right" title="@Resources.Configuration_Configurations"></i>
+                            </a>
+                        </div>*@
+                    }
                 }
             </div>
-            @* Don't show menu, if not autheticated & not role Admin*@
-            @if (User.Identity.IsAuthenticated)
-            {
-                if (User.IsInRole(Constants.Admin))
-                {
-                    <div>
-                        @Html.ActionLink(Resources.EssentialOil_EssentialOils, nameof(EssentialOilController.Index), "EssentialOil", new {area = ""}, new {id = "essential-oil-navigation-item", @class = "navbar-brand"})
-                        @Html.ActionLink(Resources.Effect_Effects, nameof(EffectController.Index), "Effect", new {area = ""}, new {id = "effect-navigation-item", @class = "navbar-brand"})
-                        @Html.ActionLink(Resources.Molecule_Molecules, nameof(MoleculeController.Index), "Molecule", new {area = ""}, new {id = "molecule-navigation-item", @class = "navbar-brand"})
-                        @Html.ActionLink(Resources.UserAdmin_UserAdmin, nameof(UserAdminController.Index), "UserAdmin", new {area = ""}, new {id = "user-admin-navigation-item", @class = "navbar-brand"})                       
-                        <a href="@Url.Action(nameof(ConfigurationController.Index), "Configuration")" id="configuration-navigation-item">
-                            <i id="configuration-icon" class="fa fa-cog fa-2x float-right" title="@Resources.Configuration_Configurations"></i> 
-                        </a>
-                    </div>
-                }
-            }
         </div>
     </div>
-</div>
 
-<div class="container body-content">
-    @* Placehoder for alert for error messages and stuff. *@
-    <div id="alert-danger" class="alert alert-danger alert-dismissible display-none">
-        <a href="#" class="close" aria-label="close">&times;</a> 
-        <span id="alert-text"></span>
+    <div class="container body-content">
+        @* Placehoder for alert for error messages and stuff. *@
+        <div id="alert-danger" class="alert alert-danger alert-dismissible display-none">
+            <a href="#" class="close" aria-label="close">&times;</a>
+            <span id="alert-text"></span>
+        </div>
+
+        @* Page content *@
+        @RenderBody()
+        <footer class="margin-top">
+            <a href="@Resources.Layout_UrlBarbaraHeld" target="_blank" class="margin-left">@string.Format(Resources.Layout_Copyright, DateTime.Now.Year)</a>
+
+            @{
+                // Get application version from helper class.
+                // HtmlString applicationVersion = Html.ApplicationVersion();
+                // TODO: v
+                HtmlString applicationVersion = new HtmlString("1.0.0.1");
+            }
+            <span class="margin-left-big">@Resources.Layout_Version @applicationVersion</span>
+
+            @* Show "Anmelden or "Abmelden" *@
+            @*@if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink(Resources.Layout_Logoff, nameof(AccountController.Logoff), "Account", null, new { @class = "float-right margin-right" })
+            }
+            else
+            {
+                @Html.ActionLink(Resources.Layout_Login, nameof(AccountController.Login), "Account", null, new { @class = "float-right margin-right" })
+            }*@
+        </footer>
     </div>
-    
-    @* Page content *@
-    @RenderBody()
-    <footer class="margin-top">
-        <a href="@Resources.Layout_UrlBarbaraHeld" target="_blank" class="margin-left">@string.Format(Resources.Layout_Copyright, DateTime.Now.Year)</a>
-        
-        @{
-            // Get application version from helper class.
-            HtmlString applicationVersion = Html.ApplicationVersion();
-        }
-        <span class="margin-left-big">@Resources.Layout_Version @applicationVersion</span>
 
-        @* Show "Anmelden or "Abmelden" *@
-        @if (User.Identity.IsAuthenticated)
-        {
-            @Html.ActionLink(Resources.Layout_Logoff, nameof(AccountController.Logoff), "Account", null, new { @class = "float-right margin-right" })
-        }
-        else
-        {
-            @Html.ActionLink(Resources.Layout_Login, nameof(AccountController.Login), "Account", null, new { @class = "float-right margin-right" })
-        }
-    </footer>
-</div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script asp-src-include="~/js/*.js"></script>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/scripts")
-@RenderSection("scripts", required: false)
+
+    @RenderSection("Scripts", required: false)
+    @{
+        // TODO: tt
+    }
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/scripts")
+        @RenderSection("scripts", required: false)*@
 </body>
 </html>
 

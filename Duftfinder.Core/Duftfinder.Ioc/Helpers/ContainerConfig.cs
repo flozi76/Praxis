@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Duftfinder.Business.Services;
+using Duftfinder.Database.Helpers;
 using Duftfinder.Database.Repositories;
 using Duftfinder.Domain.Interfaces.Repositories;
 using Duftfinder.Domain.Interfaces.Services;
@@ -8,18 +9,8 @@ namespace Duftfinder.Ioc.Helpers
 {
     public static class ContainerConfig
     {
-        public static IContainer Initialize()
+        public static void BuildUnityContainer(ContainerBuilder builder)
         {
-            IContainer container = BuildUnityContainer();
-
-            // TODO set resolver
-            //DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-            return container;
-        }
-
-        private static IContainer BuildUnityContainer()
-        {
-            var builder = new ContainerBuilder();
 
             // Register all components with the container here. 
             builder.RegisterType<SettingsRepository>().As<ISettingsRepository>();
@@ -65,8 +56,10 @@ namespace Duftfinder.Ioc.Helpers
             builder.RegisterType<EffectMoleculeRepository>().As<IEffectMoleculeRepository>();
             builder.RegisterType<EffectMoleculeService>().As<IEffectMoleculeService>();
 
-            var container = builder.Build();
-            return container;
+            builder.RegisterType<MongoContext>().As<MongoContext>();
+
+            //var container = builder.Build();
+            //return container;
         }
     }
 }

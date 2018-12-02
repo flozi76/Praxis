@@ -116,61 +116,63 @@ namespace Duftfinder.Web.Controllers
         /// <param name="model"></param>
         /// <param name="uploadFile"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult> CreateOrEdit(EssentialOilViewModel model, HttpPostedFileBase uploadFile)
-        {
-            ValidationResultList validationResult = new ValidationResultList();
-            EssentialOil essentialOil = new EssentialOil();
+        
+        // TODO
+        //[HttpPost]
+        //public async Task<ActionResult> CreateOrEdit(EssentialOilViewModel model, HttpPostedFileBase uploadFile)
+        //{
+        //    ValidationResultList validationResult = new ValidationResultList();
+        //    EssentialOil essentialOil = new EssentialOil();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    if (uploadFile?.ContentLength > 0)
-                    {
-                        // Get file name & base 64 string for picture.
-                        essentialOil.PictureFileName = Path.GetFileName(uploadFile.FileName);
-                        essentialOil.PictureDataAsString = _conversionHelper.ResizeAndGenerateBase64StringForPicture(uploadFile);
-                    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            if (uploadFile?.ContentLength > 0)
+        //            {
+        //                // Get file name & base 64 string for picture.
+        //                essentialOil.PictureFileName = Path.GetFileName(uploadFile.FileName);
+        //                essentialOil.PictureDataAsString = _conversionHelper.ResizeAndGenerateBase64StringForPicture(uploadFile);
+        //            }
 
-                    // Map view model to entity.
-                    model.MapViewModelToEntity(essentialOil);
+        //            // Map view model to entity.
+        //            model.MapViewModelToEntity(essentialOil);
 
-                    // Edit or create
-                    if (essentialOil.Id != null)
-                    {
-                        // Edit
-                        // Only update if essential oil name doesn't already exist.
-                        validationResult = await _essentialOilService.UpdateAsync(essentialOil);
-                    }
-                    else
-                    {
-                        // Create
-                        // Only insert if essential oil name doesn't already exist.
-                        validationResult = await _essentialOilService.InsertAsync(essentialOil);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error($"CreateOrEdit. An unexpected error occurred while inserting or editing: {e}");
-                    throw new ArgumentException(Resources.Resources.Error_UnexpectedError);
-                }
-            }
+        //            // Edit or create
+        //            if (essentialOil.Id != null)
+        //            {
+        //                // Edit
+        //                // Only update if essential oil name doesn't already exist.
+        //                validationResult = await _essentialOilService.UpdateAsync(essentialOil);
+        //            }
+        //            else
+        //            {
+        //                // Create
+        //                // Only insert if essential oil name doesn't already exist.
+        //                validationResult = await _essentialOilService.InsertAsync(essentialOil);
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Log.Error($"CreateOrEdit. An unexpected error occurred while inserting or editing: {e}");
+        //            throw new ArgumentException(Resources.Resources.Error_UnexpectedError);
+        //        }
+        //    }
 
-            // Show validation result, if validation error occurred while 
-            // inserting or if ModelState is invalid.
-            if (validationResult.HasErrors || !ModelState.IsValid)
-            {
-                AddValidationResultsToModelStateErrors(validationResult.Errors);
+        //    // Show validation result, if validation error occurred while 
+        //    // inserting or if ModelState is invalid.
+        //    if (validationResult.HasErrors || !ModelState.IsValid)
+        //    {
+        //        AddValidationResultsToModelStateErrors(validationResult.Errors);
 
-                Log.Info("Show CreateOrEdit");
-                return View(nameof(CreateOrEdit), model);
-            }
+        //        Log.Info("Show CreateOrEdit");
+        //        return View(nameof(CreateOrEdit), model);
+        //    }
 
-            // If form is valid, navigate to AssignMolecule.
-            Log.Info("Redirect to AssignMolecule");
-            return RedirectToAction(nameof(AssignMolecule), new { id = essentialOil.Id });
-        }
+        //    // If form is valid, navigate to AssignMolecule.
+        //    Log.Info("Redirect to AssignMolecule");
+        //    return RedirectToAction(nameof(AssignMolecule), new { id = essentialOil.Id });
+        //}
 
         /// <summary>
         /// Shows delete confirmation after delete was clicked.
@@ -556,44 +558,44 @@ namespace Duftfinder.Web.Controllers
             return RedirectToAction(nameof(Index), new { lastEditedEssentialOilId = model.EssentialOilId });
         }
 
-        /// <summary>
-        /// Converts the uploaded picture into a displayable format.
-        /// Is called from javascript.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="uploadFile"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult DisplayUploadedPicture(HttpPostedFileWrapper uploadFile)
-        {
-            string fileName = null;
-            string imageDisplayString = null;
+   //     /// <summary>
+   //     /// Converts the uploaded picture into a displayable format.
+   //     /// Is called from javascript.
+   //     /// </summary>
+   //     /// <author>Anna Krebs</author>
+   //     /// <param name="uploadFile"></param>
+   //     /// <returns></returns>
+   //     [HttpPost]
+   //     public ActionResult DisplayUploadedPicture(HttpPostedFileWrapper uploadFile)
+   //     {
+   //         string fileName = null;
+   //         string imageDisplayString = null;
 
-            if (uploadFile?.ContentLength > 0)
-            {
-                try
-                {
-                    string pictureDataAsString = _conversionHelper.ResizeAndGenerateBase64StringForPicture(uploadFile);
-                    imageDisplayString = $"data:image/gif;base64,{pictureDataAsString}";
-                    fileName = uploadFile.FileName;
-                }
-                catch (ArgumentException e)
-                {
-                    Log.Error($"Upload of file {fileName} failed. No valid file.", e);
-                    return new JsonResult($"{Resources.Resources.Error_FileCannotBeUploaded} {Resources.Resources.Error_NoValidPictureFormat}");
-                }
-                catch (Exception e)
-                {
-                    Log.Error($"Upload of file {fileName} failed.", e);
-                    return new JsonResult(Resources.Resources.Error_FileCannotBeUploaded);
-                }
-            }
+   //         if (uploadFile?.ContentLength > 0)
+   //         {
+   //             try
+   //             {
+   //                 string pictureDataAsString = _conversionHelper.ResizeAndGenerateBase64StringForPicture(uploadFile);
+   //                 imageDisplayString = $"data:image/gif;base64,{pictureDataAsString}";
+   //                 fileName = uploadFile.FileName;
+   //             }
+   //             catch (ArgumentException e)
+   //             {
+   //                 Log.Error($"Upload of file {fileName} failed. No valid file.", e);
+   //                 return new JsonResult($"{Resources.Resources.Error_FileCannotBeUploaded} {Resources.Resources.Error_NoValidPictureFormat}");
+   //             }
+   //             catch (Exception e)
+   //             {
+   //                 Log.Error($"Upload of file {fileName} failed.", e);
+   //                 return new JsonResult(Resources.Resources.Error_FileCannotBeUploaded);
+   //             }
+   //         }
 
-            // Returns JsonNetResult to js and displays picture in html.
-			// TODO check this
-            //return new JsonNetResult { Data = new { FileName = fileName, ImageDisplayString = imageDisplayString } };
-            return new JsonResult(new { FileName = fileName, ImageDisplayString = imageDisplayString });
-        }
+   //         // Returns JsonNetResult to js and displays picture in html.
+			//// TODO check this
+   //         //return new JsonNetResult { Data = new { FileName = fileName, ImageDisplayString = imageDisplayString } };
+   //         return new JsonResult(new { FileName = fileName, ImageDisplayString = imageDisplayString });
+   //     }
 
         /// <summary>
         /// Add validation results errors to ModelState in order to show in validation summary on view.
@@ -615,7 +617,7 @@ namespace Duftfinder.Web.Controllers
         /// <param name="validationResult"></param>
         private void AddGeneralModelStateError(ValidationResultList validationResult)
         {
-            List<ModelState> modelStateErrors = ModelState.Values.Where(m => m.Errors.Count != 0).ToList();
+            var modelStateErrors = ModelState.Values.Where(m => m.Errors.Count != 0).ToList();
             if (!validationResult.HasErrors && modelStateErrors.Any())
             {
                 validationResult.Errors.Add(string.Empty, Resources.Resources.Error_NotValidMoleculePercentage);

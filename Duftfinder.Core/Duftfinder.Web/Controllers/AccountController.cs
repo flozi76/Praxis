@@ -490,7 +490,7 @@ namespace Duftfinder.Web.Controllers
 
             // Get url from user mail & password reset key.
             string passwordResetPath = Url.Action("ResetPassword", "Account", new { email = user.Email, passwordResetKey = user.PasswordResetKey });
-            string passwordResetUrlFull = Url.Action("ResetPassword", "Account", new { email = user.Email, passwordResetKey = user.PasswordResetKey }, Request?.Url?.Scheme) ?? passwordResetPath;
+            string passwordResetUrlFull = Url.Action("ResetPassword", "Account", new { email = user.Email, passwordResetKey = user.PasswordResetKey }, Request?.Scheme) ?? passwordResetPath;
 
             Log.Info($"passwordResetUrlFull is {passwordResetUrlFull}");
 
@@ -515,7 +515,7 @@ namespace Duftfinder.Web.Controllers
 
             // Get url from user mail & confirmation key.
             string verifyAccountUrl = Url.Action("VerifyAccount", "Account", new { email = user.Email, verifyAccountKey = user.VerifyAccountKey });
-            string verifyAccountUrlFull = Url.Action("VerifyAccount", "Account", new { email = user.Email, verifyAccountKey = user.VerifyAccountKey }, Request?.Url?.Scheme) ?? verifyAccountUrl;
+            string verifyAccountUrlFull = Url.Action("VerifyAccount", "Account", new { email = user.Email, verifyAccountKey = user.VerifyAccountKey }, Request?.Scheme) ?? verifyAccountUrl;
 
             Log.Info($"verifyAccountUrlFull is {verifyAccountUrlFull}");
 

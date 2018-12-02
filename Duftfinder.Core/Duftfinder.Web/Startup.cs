@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Autofac;
+using Duftfinder.Ioc.Helpers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +31,11 @@ namespace Duftfinder
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 		}
 
+		public void ConfigureContainer(ContainerBuilder builder)
+		{
+			ContainerConfig.BuildUnityContainer(builder);
+		}
+
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
@@ -38,7 +45,7 @@ namespace Duftfinder
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler("/Shared/Error");
 				app.UseHsts();
 			}
 
@@ -49,7 +56,7 @@ namespace Duftfinder
 			app.UseMvc(routes => {
 				routes.MapRoute(
 					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
+					template: "{controller=SearchEssentialOil}/{action=Index}/{id?}");
 			});
 		}
 	}
