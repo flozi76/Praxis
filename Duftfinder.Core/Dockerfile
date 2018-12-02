@@ -9,7 +9,7 @@ WORKDIR /src
 #RUN dotnet restore "Duftfinder.Web/Duftfinder.Web.csproj"
 COPY . /.
 
-RUN dotnet restore "Duftfinder.Web/Duftfinder.Web.csproj"
+RUN dotnet restore "Duftfinder.Web/*.csproj"
 WORKDIR "/src/Duftfinder.Web"
 RUN dotnet build "Duftfinder.Web.csproj" -c Release -o /app
 
