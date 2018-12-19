@@ -1,4 +1,4 @@
-﻿var Effect = (function () {
+﻿var Effect = (function() {
 
     // Define Urls for HttpPost on Controllers 
     var confirmDeleteUrl = "/Effect/ShowConfirmDelete";
@@ -19,9 +19,10 @@
         Duftfinder.setActiveSubnavigationItem();
 
         // Click on "Löschen" link.
-        $("#effects .delete-buttons").on("click", function (e) {
-            Dialog.showDialog(e, confirmDeleteUrl);
-        });
+        $("#effects .delete-buttons").on("click",
+            function(e) {
+                Dialog.showDialog(e, confirmDeleteUrl);
+            });
     }
 
     return {
@@ -29,6 +30,6 @@
     };
 })();
 
-$(function () {
+$(function() {
     Effect.init();
 });

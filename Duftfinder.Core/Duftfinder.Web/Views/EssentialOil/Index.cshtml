@@ -1,7 +1,6 @@
 ﻿@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
-@using Duftfinder.Web.Models
-@model EssentialOilViewModelIndex
+@model Duftfinder.Web.Models.EssentialOilViewModelIndex
 
 @{
     ViewBag.Title = nameof(EssentialOilController.Index);
@@ -9,14 +8,14 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/dialogs")
-    @Scripts.Render("~/bundles/essentialOil")
+    <script src="/js/Dialog.js"></script>
+    <script src="/js/EssentialOil.js"></script>
 }
 
 <div id="essential-oils" class="duftfinder-content">
     <h2>@Resources.EssentialOil_EssentialOils</h2>
-    
-    @Html.HiddenFor(model => model.LastEditedEssentialOilId, new { id = "lastEditedEssentialOilId" })
+
+    @Html.HiddenFor(model => model.LastEditedEssentialOilId, new {id = "lastEditedEssentialOilId"})
 
     <p>
         @Html.ActionLink(Resources.EssentialOil_Create, nameof(EssentialOilController.CreateOrEdit))
@@ -32,8 +31,8 @@
             </th>
             <th></th>
         </tr>
-        
-        @foreach (string alphabeticalIndex in Model.AlphabeticalIndexes)
+
+        @foreach (var alphabeticalIndex in Model.AlphabeticalIndexes)
         {
             @* List all alphabeticalIndexes. (A-Z)*@
             <tr>
@@ -44,7 +43,7 @@
                 <td></td>
             </tr>
 
-            foreach (EssentialOilViewModel essentialOilViewModel in Model.EssentialOilViewModels)
+            foreach (var essentialOilViewModel in Model.EssentialOilViewModels)
             {
                 // Order essential oils by their alphabetical indexes.
                 if (essentialOilViewModel.FirstLetterOfEssentialOilName == alphabeticalIndex)

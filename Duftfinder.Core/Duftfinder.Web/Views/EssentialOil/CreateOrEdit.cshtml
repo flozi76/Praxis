@@ -1,6 +1,6 @@
 ﻿@using Duftfinder.Domain.Enums
+@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
-@using Duftfinder.Resources;
 @model Duftfinder.Web.Models.EssentialOilViewModel
 
 @{
@@ -9,40 +9,40 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/essentialOil")
+    <script src="/js/EssentialOil.js"></script>
 }
 
 @{
     // Disable Subnavigation, if Create.
-    string id = string.IsNullOrEmpty(Model.Id) ? "" : Model.Id;
+    var id = string.IsNullOrEmpty(Model.Id) ? "" : Model.Id;
     @Html.Partial("_Subnavigation", id)
 }
 
 <div class="duftfinder-content">
     <h2>@Resources.EssentialOil_EssentialOil</h2>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-    @using (Html.BeginForm("CreateOrEdit", "EssentialOil", FormMethod.Post, new { enctype = "multipart/form-data", id = "essential-oil-form" }))
+    @using (Html.BeginForm("CreateOrEdit", "EssentialOil", FormMethod.Post, new {enctype = "multipart/form-data", id = "essential-oil-form"}))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.PictureFileName, new { id = "picture-file-name" })
-        @Html.HiddenFor(model => model.PictureDataAsString, new { id = "picture-data-as-string" })
+        @Html.HiddenFor(model => model.PictureFileName, new {id = "picture-file-name"})
+        @Html.HiddenFor(model => model.PictureDataAsString, new {id = "picture-data-as-string"})
 
         <div class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-md-2">@Resources.EssentialOil_Name</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">@Resources.EssentialOil_NameLatin</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.NameLatin, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.NameLatin, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.NameLatin, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.NameLatin, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
@@ -60,11 +60,11 @@
                         <label for="rb-essential-oil-type-oil" class="control-label">@Resources.EssentialOilType_Oil</label>
                     </div>
                     <div>
-                        @Html.RadioButtonFor(m => m.Type, EssentialOilType.Hydrolat.ToString(), new {id = "rb-essential-oil-type-hydrolat" })
+                        @Html.RadioButtonFor(m => m.Type, EssentialOilType.Hydrolat.ToString(), new {id = "rb-essential-oil-type-hydrolat"})
                         <label for="rb-essential-oil-type-hydrolat" class="control-label">@Resources.EssentialOilType_Hydrolat</label>
                     </div>
                     <div>
-                        @Html.RadioButtonFor(m => m.Type, EssentialOilType.FatOil.ToString(), new {id = "rb-essential-oil-type-fat-oil" })
+                        @Html.RadioButtonFor(m => m.Type, EssentialOilType.FatOil.ToString(), new {id = "rb-essential-oil-type-fat-oil"})
                         <label for="rb-essential-oil-type-fat-oil" class="control-label">@Resources.EssentialOilType_FatOil</label>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
             <div class="form-group">
                 <label class="control-label col-md-2">@Resources.EssentialOil_PictureSource</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.PictureSource, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PictureSource, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.PictureSource, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.PictureSource, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
@@ -97,22 +97,22 @@
             <div class="form-group">
                 <div class="col-md-10">
                     @* Container in order to display uploaded picture. *@
-                    <img id="picture-container" src="@Model.PictureDataAsStringDisplay" />
+                    <img id="picture-container" src="@Model.PictureDataAsStringDisplay"/>
                 </div>
             </div>
             @{
                 // Hide "Bild entfernen" button, if no picture is in preview.
-                string displayNone = string.IsNullOrEmpty(Model.PictureDataAsStringDisplay) ? "display-none" : "";
+                var displayNone = string.IsNullOrEmpty(Model.PictureDataAsStringDisplay) ? "display-none" : "";
             }
             <div id="remove-picture-container" class="form-group @displayNone">
                 <div class="col-md-10">
-                    <input id="remove-picture" type="button" value="@Resources.EssentialOil_RemovePicture" class="btn btn-primary" />
+                    <input id="remove-picture" type="button" value="@Resources.EssentialOil_RemovePicture" class="btn btn-primary"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a href="@Url.Action(nameof(EssentialOilController.Index), new { lastEditedEssentialOilId = Model.Id })" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <a href="@Url.Action(nameof(EssentialOilController.Index), new {lastEditedEssentialOilId = Model.Id})" class="btn btn-secondary">@Resources.Action_Cancel</a>
                     <input type="submit" value="@Resources.Action_Save" class="btn btn-primary"/>
                 </div>
             </div>

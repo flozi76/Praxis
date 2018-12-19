@@ -2,7 +2,7 @@
 @using Duftfinder.Web.Controllers
 @model string
 
-@{ string disabled = string.IsNullOrEmpty(Model) ? "disabled" : ""; }
+@{ var disabled = string.IsNullOrEmpty(Model) ? "disabled" : ""; }
 <div id="subnavigation">
     <div class="navbar">
         <div class="container">
@@ -10,14 +10,14 @@
                 @* Show "Create" or "Edit" *@
                 @if (string.IsNullOrEmpty(Model))
                 {
-                    @Html.ActionLink(Resources.Effect_Create, nameof(EffectController.CreateOrEdit), new { id = Model }, new { id = "create-or-edit-subnavigation-item", @class = "navbar-brand" })
+                    @Html.ActionLink(Resources.Effect_Create, nameof(EffectController.CreateOrEdit), new {id = Model}, new {id = "create-or-edit-subnavigation-item", @class = "navbar-brand"})
                 }
                 else
                 {
-                    @Html.ActionLink(Resources.Effect_Edit, nameof(EffectController.CreateOrEdit), new { id = Model }, new { id = "create-or-edit-subnavigation-item", @class = "navbar-brand " + disabled })
-               }
-                @Html.ActionLink(Resources.Effect_AssignMolecule, nameof(EffectController.AssignMolecule), new { id = Model }, new { id = "assign-molecule-subnavigation-item", @class = "navbar-brand " + disabled })
-                @Html.ActionLink(Resources.Effect_AssignEssentialOil, nameof(EffectController.AssignEssentialOil), new { id = Model }, new { id = "assign-essential-oil-subnavigation-item", @class = "navbar-brand " + disabled })
+                    @Html.ActionLink(Resources.Effect_Edit, nameof(EffectController.CreateOrEdit), new {id = Model}, new {id = "create-or-edit-subnavigation-item", @class = "navbar-brand " + disabled})
+                }
+                @Html.ActionLink(Resources.Effect_AssignMolecule, nameof(EffectController.AssignMolecule), new {id = Model}, new {id = "assign-molecule-subnavigation-item", @class = "navbar-brand " + disabled})
+                @Html.ActionLink(Resources.Effect_AssignEssentialOil, nameof(EffectController.AssignEssentialOil), new {id = Model}, new {id = "assign-essential-oil-subnavigation-item", @class = "navbar-brand " + disabled})
             </div>
         </div>
     </div>

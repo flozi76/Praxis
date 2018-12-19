@@ -1,6 +1,5 @@
 ﻿@using Duftfinder.Resources
-@using Duftfinder.Web.Models
-@model SearchEffectsViewModel
+@model Duftfinder.Web.Models.SearchEffectsViewModel
 
 <div id="search-effects-container">
     <h2>@Resources.SearchEffects_SearchEffects</h2>
@@ -8,7 +7,7 @@
         <label>@Resources.SearchEffects_SearchEffectsDescription</label>
     </div>
 
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "search-effects-form" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new {id = "search-effects-form"}))
     {
         @Html.AntiForgeryToken()
 
@@ -21,13 +20,13 @@
                 </div>
 
                 @* The list with the "Wirkungen" search fields. *@
-                @for (int i = 0; i < Model.SearchEffects.Count; i++)
+                @for (var i = 0; i < Model.SearchEffects.Count; i++)
                 {
                     <div class="search-effects-items row margin-bottom">
                         <label class="control-label col-md-2">@Resources.SearchEffects_Effect</label>
                         <div class="col-md-7">
                             @* Workaround to get items of model list in HttpPost of Controller *@
-                            @Html.TextBox("[" + i + "].SearchEffectText", Model.SearchEffects[i].SearchEffectText, new {id = "search-effect-text-" + i, @class = "form-control search-effects-texts col-md-10 col-10", autocomplete = "off" })
+                            @Html.TextBox("[" + i + "].SearchEffectText", Model.SearchEffects[i].SearchEffectText, new {id = "search-effect-text-" + i, @class = "form-control search-effects-texts col-md-10 col-10", autocomplete = "off"})
                             <input id="clear-search-@i" type="button" class="btn btn-secondary clear-search-inputs" value="X" data-item-id="@i">
                         </div>
 
@@ -38,14 +37,14 @@
                         </div>
 
                         @* The slider *@
-                        @Html.TextBox("[" + i + "].DiscomfortValue", Model.SearchEffects[i].DiscomfortValue, new {id = "slider-" + i, @class = "slider col-md-3", data_slider_min = "0", data_slider_max = "4", data_slider_step = "1", data_slider_value = Model.SearchEffects[i].DiscomfortValue })
+                        @Html.TextBox("[" + i + "].DiscomfortValue", Model.SearchEffects[i].DiscomfortValue, new {id = "slider-" + i, @class = "slider col-md-3", data_slider_min = "0", data_slider_max = "4", data_slider_step = "1", data_slider_value = Model.SearchEffects[i].DiscomfortValue})
                     </div>
                 }
-            </div>                
+            </div>
         </div>
         <div id="search-effects-button-container" class="col-md-2">
-            <input id="reset-search-effects-button" type="button" value="@Resources.Action_ResetSearch" class="btn btn-secondary" />
-            <input id="search-effects-button" type="submit" value="@Resources.Action_Search" class="btn btn-primary" />
+            <input id="reset-search-effects-button" type="button" value="@Resources.Action_ResetSearch" class="btn btn-secondary"/>
+            <input id="search-effects-button" type="submit" value="@Resources.Action_Search" class="btn btn-primary"/>
         </div>
     }
 </div>

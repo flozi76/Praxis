@@ -19,48 +19,54 @@
         loadEffectNames();
 
         // Click on "Search" button.
-        $("#search-effects #search-effects-button").on("click", function (e) {
-            showEffectsSearchResults(e);
-        });
+        $("#search-effects #search-effects-button").on("click",
+            function(e) {
+                showEffectsSearchResults(e);
+            });
 
         // Click on "Reset Search" button.
-        $("#search-effects #reset-search-effects-button").on("click", function (e) {
-            resetSearch();
-        });
+        $("#search-effects #reset-search-effects-button").on("click",
+            function(e) {
+                resetSearch();
+            });
 
         // Click on "X" of specific search item.
-        $(".clear-search-inputs").click(function (e) {
+        $(".clear-search-inputs").click(function(e) {
             clearSearchInput(e);
         });
     }
 
     function initializeElementsForShowEffectsSearchResults() {
         // Click on "Details" link.
-        $("#search-effects .details-buttons").on("click", function (e) {
-            showEssentialOilDetails(e);
-        });
+        $("#search-effects .details-buttons").on("click",
+            function(e) {
+                showEssentialOilDetails(e);
+            });
 
         // Click on the filter buttons.
-        $("#search-effects .filter-list-amount-button").on("click", function (e) {
-            filterEffectsSearchResultsAmount(e);
-        });
+        $("#search-effects .filter-list-amount-button").on("click",
+            function(e) {
+                filterEffectsSearchResultsAmount(e);
+            });
 
         // Click table row.
-        $("#effects-search-results-container table tbody tr").on("click", function (e) {
-            highlightSearchedEffectInputs(e);
-        });
+        $("#effects-search-results-container table tbody tr").on("click",
+            function(e) {
+                highlightSearchedEffectInputs(e);
+            });
 
         // Click on elements OUTSIDE of tbody.
-        $('#effects-search-results-container table tbody').click(function (event) {
+        $("#effects-search-results-container table tbody").click(function(event) {
             // .one(..) is executed at most once per element per event type.
-            $('html').one('click', function () {
-                // Is executed, if outside of tbody element is clicked.
-                console.log("click outside of tbody, remove highlight of search texts & of clicked row");
+            $("html").one("click",
+                function() {
+                    // Is executed, if outside of tbody element is clicked.
+                    console.log("click outside of tbody, remove highlight of search texts & of clicked row");
 
-                // Remove highlight of clicked row and of search effect texts.
-                $("#effects-search-results-container table tbody tr").removeClass("highlight-input");
-                $("#search-effects .search-effects-texts").removeClass("highlight-input");
-            });
+                    // Remove highlight of clicked row and of search effect texts.
+                    $("#effects-search-results-container table tbody tr").removeClass("highlight-input");
+                    $("#search-effects .search-effects-texts").removeClass("highlight-input");
+                });
 
             event.stopPropagation();
         });
@@ -72,7 +78,7 @@
 
         // IMPORTANT: stuff that changes here, also has to change in window.onpopstate = function(..)
         // Click on "Zurück" button in EssentialOilDetails.
-        $("#essential-oil-details #search-effects-back-button").click(function (e) {
+        $("#essential-oil-details #search-effects-back-button").click(function(e) {
             // e.preventDefault() is necessary in order to prevent the window.onpopstate to be fired after the custom "Zurück" button was clicked.
             e.preventDefault();
             console.log("Click on 'Zurück' button in EssentialOilDetails.");
@@ -82,7 +88,7 @@
         // Workaround to implement the same functionality when the browser "Zurück" button is clicked, as when the custom "Zurück" button
         // in the Details page is clicked. Workaround is necessary because EssentialOilDetails page & EffectSearchResults are partial views.
         // "Click on 'Zurück' button in browser."
-        window.onpopstate = function (e) {
+        window.onpopstate = function(e) {
             // Check is necessary in order to prevent the showEffectsSearch to be fired if other navigation stuff is done. (e.g. click on "Details" in result list)
             if ($("#essential-oil-details").length !== 0) {
                 console.log("Click on 'Zurück' button in browser.");
@@ -90,7 +96,7 @@
             }
         };
     }
-    
+
     function loadEffectNames() {
         // Get all effect names from controller.
         var url = Duftfinder.getRootPath() + getEffectNamesUrl;
@@ -109,7 +115,9 @@
             }).fail(function(result) {
                 console.log("loadEffectNames failed");
                 // Show alert danger & general error message.
-                Duftfinder.showAlert(Resources.Error_UnexpectedError + " " + Resources.Error_SearchDataCouldNotBeLoaded);
+                Duftfinder.showAlert(Resources.Error_UnexpectedError +
+                    " " +
+                    Resources.Error_SearchDataCouldNotBeLoaded);
             });
     }
 
@@ -176,7 +184,7 @@
         var url = Duftfinder.getRootPath() + essentialOilDetailsUrl;
 
         $.post(url, data)
-            .then(function (result) {
+            .then(function(result) {
                 console.log("showEssentialOilDetails succeeded");
 
                 // Return result is html of contents of PartialView _EssentialOilDetails.
@@ -188,7 +196,7 @@
 
                 initializeElementsForShowEssentialOilDetails();
 
-            }).fail(function (result) {
+            }).fail(function(result) {
                 console.log("showEssentialOilDetails failed");
 
                 // Show alert danger & general error message.
@@ -205,7 +213,7 @@
         var url = Duftfinder.getRootPath() + searchUrl;
 
         $.post(url, data)
-            .then(function (result) {
+            .then(function(result) {
                 console.log("showEffectsSearch succeeded");
 
                 // Return result is html of contents of PartialView _EssentialOilDetails.
@@ -223,7 +231,7 @@
 
                 // Trigger search buttons, in order to show the search results after navigation back.
                 $("#search-effects #search-effects-button").trigger("click");
-            }).fail(function (result) {
+            }).fail(function(result) {
                 console.log("showEffectsSearch failed");
 
                 // Show alert danger & general error message.
@@ -239,7 +247,7 @@
         // Otherwise use value from the data-item attribute.
         var filterAmount = setFilterAmount($(e.currentTarget).attr("data-item-filter-list-amount"));
         console.log("filterAmount is " + filterAmount);
-        
+
         // Remove all hidden tr of table.
         $("#effects-search-results-container table tbody tr").removeClass("display-none");
 
@@ -247,7 +255,8 @@
             // Hide all tr elements of table, according to the filterAmount.
             // Add 2 to filterAmount, because of header element of tr and then from 1 onwards.
             var hideChildrenValue = parseInt(filterAmount) + 2;
-            $("#effects-search-results-container table tbody tr:nth-child(n+ " + hideChildrenValue + ")").addClass("display-none");
+            $("#effects-search-results-container table tbody tr:nth-child(n+ " + hideChildrenValue + ")")
+                .addClass("display-none");
         }
 
         changeActiveFilterButton(filterAmount);
@@ -263,7 +272,7 @@
 
         } else {
             // Check which filter is activated according to the data-item attribute.
-            $(".filter-list-amount-button").each(function () {
+            $(".filter-list-amount-button").each(function() {
                 if ($(this).attr("data-item-filter-list-amount") === filterAmount) {
                     $(this).addClass("active");
                 }
@@ -289,28 +298,34 @@
         $(e.currentTarget).addClass("highlight-input");
 
         // String/array that contains all effects, that the clicked essential oil is effective for. Is retrieved from hidden field in table.
-        var stringOfAllSearchedEffectsInEssentialOil = $("#effects-search-results-container #search-effect-text-" + essentialOilId).val();
-        var arrayOfAllSearchedEffectsInEssentialOil = stringOfAllSearchedEffectsInEssentialOil.split(';@');
+        var stringOfAllSearchedEffectsInEssentialOil =
+            $("#effects-search-results-container #search-effect-text-" + essentialOilId).val();
+        var arrayOfAllSearchedEffectsInEssentialOil = stringOfAllSearchedEffectsInEssentialOil.split(";@");
 
-        console.log("clicked essential oil with id " + essentialOilId + " is effective for effects: " + stringOfAllSearchedEffectsInEssentialOil);
-        
+        console.log("clicked essential oil with id " +
+            essentialOilId +
+            " is effective for effects: " +
+            stringOfAllSearchedEffectsInEssentialOil);
+
         // Highlight all search effect textes, that are contained in the clicked essential oil.
-        $("#search-effects .search-effects-texts").each(function () {
+        $("#search-effects .search-effects-texts").each(function() {
             var searchEffectText = $.trim($(this).val());
             // Check if search effect exist in array.
             if ($.inArray(searchEffectText, arrayOfAllSearchedEffectsInEssentialOil) > -1 && searchEffectText !== "") {
                 console.log("highlight effect " + searchEffectText);
                 $(this).addClass("highlight-input");
-            }           
+            }
         });
     }
-   
+
     function showLoader() {
         // Show loader according to whether result is already displayed or not.
         if ($("#effects-search-results-header").length === 0) {
-            $("#effects-search-results-container").append("<div id=\"loader-container\"><div class=\"loader\"></div></div>");
+            $("#effects-search-results-container")
+                .append("<div id=\"loader-container\"><div class=\"loader\"></div></div>");
         } else {
-            $("#effects-search-results-header").append("<div id=\"loader-container\" class=\"margin-top-small\"><div class=\"loader\"></div></div>");
+            $("#effects-search-results-header")
+                .append("<div id=\"loader-container\" class=\"margin-top-small\"><div class=\"loader\"></div></div>");
         }
     }
 
@@ -320,15 +335,15 @@
 
         // Check every search effect container, if search value was inputted.
         // Important for slider: selector must be ".slider:input" -> otherwise console error.
-        $("#search-effects .search-effects-items").each(function (index) {
+        $("#search-effects .search-effects-items").each(function(index) {
             // Reset slider if no search text is entered.
             if ($(this).find(".search-effects-texts").val() === "") {
                 $(this).find(".slider:input").bootstrapSlider("setValue", 0);
             }
 
             // Highlight search text if no slider value was enterd, but search text was entered.
-            if ($(this).find(".slider:input").bootstrapSlider("getValue") === 0
-                && $(this).find(".search-effects-texts").val() !== "") {
+            if ($(this).find(".slider:input").bootstrapSlider("getValue") === 0 &&
+                $(this).find(".search-effects-texts").val() !== "") {
                 $(this).find(".search-effects-texts").addClass("disabled-input");
             }
         });
@@ -367,7 +382,9 @@
     }
 
     function isDefaultFilterSet(filterAmount) {
-        if (filterAmount !== "" && filterAmount !== null && filterAmount !== Resources.SearchEffects_SearchResultFilter_All) {
+        if (filterAmount !== "" &&
+            filterAmount !== null &&
+            filterAmount !== Resources.SearchEffects_SearchResultFilter_All) {
             return false;
         }
         return true;

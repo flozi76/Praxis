@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>b9e20c92-ce2b-47cc-b268-723d530a1286</UserSecretsId>
+    <AssemblyName>duftfinder.web</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Account\**" />
     <Compile Remove="Views\Configuration\**" />
     <Compile Remove="Views\Effect\**" />
     <Compile Remove="Views\EssentialOil\**" />
@@ -15,7 +15,6 @@
     <Compile Remove="Views\SearchEffects\**" />
     <Compile Remove="Views\Settings\**" />
     <Compile Remove="Views\UserAdmin\**" />
-    <Content Remove="Views\Account\**" />
     <Content Remove="Views\Configuration\**" />
     <Content Remove="Views\Effect\**" />
     <Content Remove="Views\EssentialOil\**" />
@@ -23,7 +22,6 @@
     <Content Remove="Views\SearchEffects\**" />
     <Content Remove="Views\Settings\**" />
     <Content Remove="Views\UserAdmin\**" />
-    <EmbeddedResource Remove="Views\Account\**" />
     <EmbeddedResource Remove="Views\Configuration\**" />
     <EmbeddedResource Remove="Views\Effect\**" />
     <EmbeddedResource Remove="Views\EssentialOil\**" />
@@ -31,7 +29,6 @@
     <EmbeddedResource Remove="Views\SearchEffects\**" />
     <EmbeddedResource Remove="Views\Settings\**" />
     <EmbeddedResource Remove="Views\UserAdmin\**" />
-    <None Remove="Views\Account\**" />
     <None Remove="Views\Configuration\**" />
     <None Remove="Views\Effect\**" />
     <None Remove="Views\EssentialOil\**" />
@@ -42,27 +39,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\AccountController.cs" />
-    <Compile Remove="Controllers\ConfigurationController.cs" />
-    <Compile Remove="Controllers\EffectController.cs" />
-    <Compile Remove="Controllers\EssentialOilController.cs" />
-    <Compile Remove="Controllers\MoleculeController.cs" />
-    <Compile Remove="Controllers\SearchEffectsController.cs" />
-    <Compile Remove="Controllers\SettingsController.cs" />
-    <Compile Remove="Controllers\UserAdminController.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="Views\Configuration\Edit.cshtml" />
+    <None Include="Views\Configuration\Index.cshtml" />
+    <None Include="Views\Effect\AssignEssentialOil.cshtml" />
+    <None Include="Views\Effect\AssignMolecule.cshtml" />
+    <None Include="Views\Effect\CreateOrEdit.cshtml" />
+    <None Include="Views\Effect\Index.cshtml" />
+    <None Include="Views\Effect\_Subnavigation.cshtml" />
+    <None Include="Views\EssentialOil\AssignEffect.cshtml" />
+    <None Include="Views\EssentialOil\AssignMolecule.cshtml" />
+    <None Include="Views\EssentialOil\CreateOrEdit.cshtml" />
+    <None Include="Views\EssentialOil\Index.cshtml" />
+    <None Include="Views\EssentialOil\_Subnavigation.cshtml" />
+    <None Include="Views\Molecule\CreateOrEdit.cshtml" />
+    <None Include="Views\Molecule\Index.cshtml" />
+    <None Include="Views\SearchEffects\Index.cshtml" />
+    <None Include="Views\SearchEffects\_EffectsSearchResults.cshtml" />
+    <None Include="Views\SearchEffects\_Search.cshtml" />
     <None Include="Views\SearchEssentialOil\Index.cshtml" />
     <None Include="Views\SearchEssentialOil\_EssentialOilDetails.cshtml" />
     <None Include="Views\SearchEssentialOil\_EssentialOilSearchResults.cshtml" />
     <None Include="Views\SearchEssentialOil\_Search.cshtml" />
+    <None Include="Views\Settings\Index.cshtml" />
+    <None Include="Views\UserAdmin\CreateOrEdit.cshtml" />
+    <None Include="Views\UserAdmin\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,5 @@
 ﻿@using Duftfinder.Resources
-@using Duftfinder.Web.Models
-@model SearchResultViewModel
+@model Duftfinder.Web.Models.SearchResultViewModel
 
 <div id="essential-oil-search-results-header" class="margin-bottom">
     <span>@Resources.SearchEssentialOil_SearchResultAmountText @Model.SearchEssentialOilResultsAmount</span>
@@ -22,7 +21,7 @@
             <th></th>
         </tr>
 
-        foreach (string alphabeticalIndex in Model.AlphabeticalIndexes)
+        foreach (var alphabeticalIndex in Model.AlphabeticalIndexes)
         {
             @* List all alphabetical indexes. (A-Z)*@
             <tr>
@@ -34,7 +33,7 @@
             </tr>
 
             // Order essential oils by their alphabetical indexes.
-            foreach (EssentialOilViewModel item in Model.SearchEssentialOilResults)
+            foreach (var item in Model.SearchEssentialOilResults)
             {
                 if (item.FirstLetterOfEssentialOilName == alphabeticalIndex)
                 {

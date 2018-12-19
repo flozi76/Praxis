@@ -1,6 +1,5 @@
 ﻿@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
-@using Duftfinder.Web.Models
 @model IEnumerable<Duftfinder.Web.Models.ConfigurationViewModel>
 
 @{
@@ -21,7 +20,7 @@
             <th></th>
         </tr>
 
-        @foreach (ConfigurationViewModel item in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -32,7 +31,7 @@
                 </td>
                 <td>
                     <div>
-                        @Html.ActionLink(Resources.Action_Edit, nameof(ConfigurationController.Edit), new { id = item.Id })
+                        @Html.ActionLink(Resources.Action_Edit, nameof(ConfigurationController.Edit), new {id = item.Id})
                     </div>
                 </td>
             </tr>

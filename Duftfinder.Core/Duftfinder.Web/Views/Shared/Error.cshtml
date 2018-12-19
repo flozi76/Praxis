@@ -5,10 +5,10 @@
 }
 <div class="duftfinder-content">
     <h2>@Resources.Error_Error</h2>
-    
+
     <div class="margin-top-big margin-bottom">
-        @{ string displayErrorMessage = $"{Resources.Error_UnexpectedError} {Resources.Error_TryAgainLater} "; }
-        @if (!string.IsNullOrEmpty(@Model.Exception.Message))
+        @{ var displayErrorMessage = $"{Resources.Error_UnexpectedError} {Resources.Error_TryAgainLater} "; }
+        @if (!string.IsNullOrEmpty(Model.Exception.Message))
         {
             <label>@displayErrorMessage</label>
         }

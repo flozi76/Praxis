@@ -1,9 +1,10 @@
-﻿var EssentialOil = (function () {
+﻿var EssentialOil = (function() {
 
     // Define Urls for HttpPost on Controllers
-    var displayUploadedPictureUrl = "/EssentialOil/DisplayUploadedPicture"; // IMPORTANT: This url MUST have a / as a prefix. Otherwise Controller won't be called.
+    var displayUploadedPictureUrl =
+        "/EssentialOil/DisplayUploadedPicture"; // IMPORTANT: This url MUST have a / as a prefix. Otherwise Controller won't be called.
     var confirmDeleteUrl = "/EssentialOil/ShowConfirmDelete";
-    
+
     function init() {
         console.log("init essential oils");
         initializeElements();
@@ -23,14 +24,16 @@
         $("#upload-file-input").on("change", displayUploadedPicture);
 
         // Click on "Löschen" link.
-        $("#essential-oils .delete-buttons").on("click", function (e) {
-            Dialog.showDialog(e, confirmDeleteUrl);
-        });
+        $("#essential-oils .delete-buttons").on("click",
+            function(e) {
+                Dialog.showDialog(e, confirmDeleteUrl);
+            });
 
         // Click on "Bild enfernen" button.
-        $("#essential-oil-form #remove-picture").on("click", function () {
-            removePicture();
-        });
+        $("#essential-oil-form #remove-picture").on("click",
+            function() {
+                removePicture();
+            });
     }
 
     // Display uploaded picture, after picture is selected from file system.
@@ -43,8 +46,8 @@
         var url = Duftfinder.getRootPath() + displayUploadedPictureUrl;
         $.ajax({
             url: url,
-            type: 'POST',
-            beforeSend: function() { },
+            type: "POST",
+            beforeSend: function() {},
             success: function(result) {
                 console.log("displayUploadedPicture succeeded");
                 // Show uploaded picture in container, hide error message and loader.

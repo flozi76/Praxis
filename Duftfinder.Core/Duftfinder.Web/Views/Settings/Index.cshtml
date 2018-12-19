@@ -2,14 +2,13 @@
 @using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
 @using Duftfinder.Web.Models
-
 @{
     ViewBag.Title = nameof(SettingsController.Index);
 }
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/dialogs")
+    <script src="/js/Dialog.js"></script>
 }
 
 <div class="duftfinder-content">
@@ -39,7 +38,7 @@
     <div id="dialog-modal-initialize-substances-categories" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
         @{
             // Modal for confirmation stuff.
-            ConfirmationViewModel model = new ConfirmationViewModel { Id = "initialize-substances-categories", Name = String.Empty, DialogTitle = Resources.Settings_InitializeSubstancesAndCategories, DialogText = Resources.Confirmation_InitializeSubstancesAndCategories_Text, Action = Constants.SettingsInitializeSubstancesAndCategories };
+            var model = new ConfirmationViewModel {Id = "initialize-substances-categories", Name = string.Empty, DialogTitle = Resources.Settings_InitializeSubstancesAndCategories, DialogText = Resources.Confirmation_InitializeSubstancesAndCategories_Text, Action = Constants.SettingsInitializeSubstancesAndCategories};
             @Html.Partial("_Confirmation", model)
         }
     </div>
@@ -48,7 +47,7 @@
     <div id="dialog-modal-initialize-essential-oils" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
         @{
             // Modal for confirmation stuff.
-            ConfirmationViewModel modelEssentialOils = new ConfirmationViewModel { Id = "initialize-essential-oils", Name = String.Empty, DialogTitle = Resources.Settings_InitializeEssentialOils, DialogText = Resources.Confirmation_InitializeEssentialOils_Text, Action = Constants.SettingsInitializeEssentialOils };
+            var modelEssentialOils = new ConfirmationViewModel {Id = "initialize-essential-oils", Name = string.Empty, DialogTitle = Resources.Settings_InitializeEssentialOils, DialogText = Resources.Confirmation_InitializeEssentialOils_Text, Action = Constants.SettingsInitializeEssentialOils};
             @Html.Partial("_Confirmation", modelEssentialOils)
         }
     </div>
@@ -57,7 +56,7 @@
     <div id="dialog-modal-initialize-effects" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
         @{
             // Modal for confirmation stuff.
-            ConfirmationViewModel modelEffects = new ConfirmationViewModel { Id = "initialize-effects", Name = String.Empty, DialogTitle = Resources.Settings_InitializeEffects, DialogText = Resources.Confirmation_InitializeEffects_Text, Action = Constants.SettingsInitializeEffects };
+            var modelEffects = new ConfirmationViewModel {Id = "initialize-effects", Name = string.Empty, DialogTitle = Resources.Settings_InitializeEffects, DialogText = Resources.Confirmation_InitializeEffects_Text, Action = Constants.SettingsInitializeEffects};
             @Html.Partial("_Confirmation", modelEffects)
         }
     </div>
@@ -66,7 +65,7 @@
     <div id="dialog-modal-initialize-molecules" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
         @{
             // Modal for confirmation stuff.
-            ConfirmationViewModel modelMolecules = new ConfirmationViewModel { Id = "initialize-molecules", Name = String.Empty, DialogTitle = Resources.Settings_InitializeMolecules, DialogText = Resources.Confirmation_InitializeMolecules_Text, Action = Constants.SettingsInitializeMolecules };
+            var modelMolecules = new ConfirmationViewModel {Id = "initialize-molecules", Name = string.Empty, DialogTitle = Resources.Settings_InitializeMolecules, DialogText = Resources.Confirmation_InitializeMolecules_Text, Action = Constants.SettingsInitializeMolecules};
             @Html.Partial("_Confirmation", modelMolecules)
         }
     </div>
@@ -75,7 +74,7 @@
     <div id="dialog-modal-initialize-users" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
         @{
             // Modal for confirmation stuff.
-            ConfirmationViewModel modelUsers = new ConfirmationViewModel { Id = "initialize-users", Name = String.Empty, DialogTitle = Resources.Settings_InitializeUsers, DialogText = Resources.Confirmation_InitializeUsers_Text, Action = Constants.SettingsInitializeUsers };
+            var modelUsers = new ConfirmationViewModel {Id = "initialize-users", Name = string.Empty, DialogTitle = Resources.Settings_InitializeUsers, DialogText = Resources.Confirmation_InitializeUsers_Text, Action = Constants.SettingsInitializeUsers};
             @Html.Partial("_Confirmation", modelUsers)
         }
     </div>
@@ -84,7 +83,7 @@
     <div id="dialog-modal-initialize-configuration" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-modal-label" aria-hidden="true">
         @{
             // Modal for confirmation stuff.
-            ConfirmationViewModel modelConfiguration = new ConfirmationViewModel { Id = "initialize-configuration", Name = String.Empty, DialogTitle = Resources.Settings_InitializeConfigurationValues, DialogText = Resources.Confirmation_InitializeConfigurationValues_Text, Action = Constants.SettingsInitializeConfigurationValues };
+            var modelConfiguration = new ConfirmationViewModel {Id = "initialize-configuration", Name = string.Empty, DialogTitle = Resources.Settings_InitializeConfigurationValues, DialogText = Resources.Confirmation_InitializeConfigurationValues_Text, Action = Constants.SettingsInitializeConfigurationValues};
             @Html.Partial("_Confirmation", modelConfiguration)
         }
     </div>

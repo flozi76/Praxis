@@ -1,4 +1,4 @@
-﻿var Dialog = (function () {
+﻿var Dialog = (function() {
     // Set variables globally
     this.dialogItemId = null;
 
@@ -9,9 +9,10 @@
 
     function initializeElements() {
         // Buttons
-        $(".submit-buttons").on("click", function(e) {
-            submitConfirmation(e);
-        });
+        $(".submit-buttons").on("click",
+            function(e) {
+                submitConfirmation(e);
+            });
     }
 
     // Show confirmation or notification dialog. Makes post to controller and gets the 
@@ -21,23 +22,23 @@
         Dialog.dialogItemId = $(e.currentTarget).attr("data-item-id");
         var name = $(e.currentTarget).attr("data-item-name");
 
-        var data = { id: Dialog.dialogItemId, name: name }
+        var data = { id: Dialog.dialogItemId, name: name };
         var url = Duftfinder.getRootPath() + showConfirmUrl;
 
         $.post(url, data)
-            .then(function (result) {
+            .then(function(result) {
                 console.log("showDialog succeeded");
                 // Return result is html of dialog contents.
                 // Set the dialog with the html result
                 $("#dialog-modal-" + Dialog.dialogItemId).html(result);
 
                 // Register the modal.
-                $("#dialog-modal-" + Dialog.dialogItemId).modal('show');
+                $("#dialog-modal-" + Dialog.dialogItemId).modal("show");
 
                 // Init the dialog in order for the buttons to work.
                 init();
 
-            }).fail(function (result) {
+            }).fail(function(result) {
                 console.log("showDialog failed");
                 // Show alert danger & general error message.
                 Duftfinder.showAlert(Resources.Error_UnexpectedError);
@@ -51,22 +52,22 @@
         var confirmationUrl = $(e.currentTarget).attr("data-confirmation-action");
 
         // Get data.
-        var data = { id: id }
+        var data = { id: id };
         var url = Duftfinder.getRootPath() + confirmationUrl;
 
         $.post(url, data)
-            .done(function () {
+            .done(function() {
                 console.log("submitConfirmation succeeded");
                 // Hide alert & reload page.
                 Duftfinder.hideAlert();
                 location.reload();
             })
-            .fail(function (data) {
+            .fail(function(data) {
                 console.log("submitConfirmation failed");
                 // Show alert danger & appropriate error message.
                 Duftfinder.showAlert(data.responseJSON.errorMessage);
             })
-            .always(function () {
+            .always(function() {
                 // Hide the dialog.
                 $("#dialog-modal-" + id).modal("hide");
             });
@@ -78,6 +79,6 @@
     };
 })();
 
-$(function () {
+$(function() {
     Dialog.init();
 });

@@ -7,14 +7,13 @@
 
 @section Scripts
 {
-    @*// TODO*@
-    @*@Scripts.Render("~/bundles/sliders")
-    @Scripts.Render("~/bundles/autocomplete")
-    @Scripts.Render("~/bundles/searchEssentialOil")*@
+    <script src="/js/Slider.js"></script>
+    <script src="/js/Autocomplete.js"></script>
+    <script src="/js/SearchEssentialOil.js"></script>
 }
 
 <div id="search-essential-oil" class="duftfinder-content">
-    
+
     @* The PartialView for the search. *@
     @Html.Partial("_Search", Model)
 </div>

@@ -1,4 +1,4 @@
-﻿var Duftfinder = (function () {
+﻿var Duftfinder = (function() {
     // Set variables globally
     this.lastEditedValueId = null;
 
@@ -38,9 +38,10 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         // Click on X of alert
-        $("#alert-danger .close").on("click", function (e) {
-            hideAlert();
-        });
+        $("#alert-danger .close").on("click",
+            function(e) {
+                hideAlert();
+            });
     }
 
     function hideAlert() {
@@ -107,8 +108,9 @@
         if (Duftfinder.lastEditedValueId) {
             console.log("Scroll to essential oil with id: " + Duftfinder.lastEditedValueId);
             $("html, body").animate({
-                scrollTop: $("tr[data-item-value-id=" + Duftfinder.lastEditedValueId + "]").offset().top - 200
-            }, 1000);
+                    scrollTop: $("tr[data-item-value-id=" + Duftfinder.lastEditedValueId + "]").offset().top - 200
+                },
+                1000);
 
             // Reset the value
             Duftfinder.lastEditedValueId = null;
@@ -116,27 +118,29 @@
     }
 
     // Allow users to enter numbers only.
-    $(".numeric-only").bind('keypress', function (e) {
-        if (e.keyCode === '9' || e.keyCode === '16') {
-            return;
-        }
-        var code;
-        if (e.keyCode) code = e.keyCode;
-        else if (e.which) code = e.which;
-        // Allow . (is code 46)
-        //if (e.which === 46) 
-        //    return false;
-        if (code === 8 || code === 46)
-            return true;
-        if (code < 48 || code > 57)
-            return false;
-    });
+    $(".numeric-only").bind("keypress",
+        function(e) {
+            if (e.keyCode === "9" || e.keyCode === "16") {
+                return;
+            }
+            var code;
+            if (e.keyCode) code = e.keyCode;
+            else if (e.which) code = e.which;
+            // Allow . (is code 46)
+            //if (e.which === 46) 
+            //    return false;
+            if (code === 8 || code === 46)
+                return true;
+            if (code < 48 || code > 57)
+                return false;
+        });
 
     // Disable paste.
-    $(".numeric-only").bind("paste", function (e) {
-        e.preventDefault();
-    });
-    
+    $(".numeric-only").bind("paste",
+        function(e) {
+            e.preventDefault();
+        });
+
     return {
         init: init,
         getRootPath: getRootPath,
@@ -147,7 +151,6 @@
     };
 })();
 
-$(function () {
+$(function() {
     Duftfinder.init();
 });
-

@@ -1,4 +1,4 @@
-﻿var Slider = (function () {
+﻿var Slider = (function() {
     function init() {
         console.log("init sliders");
         initializeElements();
@@ -14,9 +14,10 @@
         $("#essential-oil-details .slider").addClass("col-12");
 
 
-        $(".slider").on("change", function (e) {
-            sliderChanged(e);
-        });
+        $(".slider").on("change",
+            function(e) {
+                sliderChanged(e);
+            });
     }
 
     function sliderChanged(e) {
@@ -25,7 +26,7 @@
         var sliderId = "#slider-" + id;
 
         $(sliderId).bootstrapSlider({
-            formatter: function (value) {
+            formatter: function(value) {
                 console.log(sliderId + " has value: " + value);
             }
         });
@@ -36,6 +37,6 @@
     };
 })();
 
-$(function () {
+$(function() {
     Slider.init();
 });

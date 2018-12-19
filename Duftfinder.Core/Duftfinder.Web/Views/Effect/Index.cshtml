@@ -1,7 +1,6 @@
 ﻿@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
-@using Duftfinder.Web.Models
-@model EffectViewModelIndex
+@model Duftfinder.Web.Models.EffectViewModelIndex
 
 @{
     ViewBag.Title = nameof(EffectController.Index);
@@ -9,14 +8,14 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/dialogs")
-    @Scripts.Render("~/bundles/effect")
+    <script src="/js/Dialog.js"></script>
+    <script src="/js/Effect.js"></script>
 }
 
 <div id="effects" class="duftfinder-content">
     <h2>@Resources.Effect_Effects</h2>
-    
-    @Html.HiddenFor(model => model.LastEditedEffectId, new { id = "lastEditedEffectId" })
+
+    @Html.HiddenFor(model => model.LastEditedEffectId, new {id = "lastEditedEffectId"})
 
     <p>
         @Html.ActionLink(Resources.Effect_Create, nameof(EffectController.CreateOrEdit))
@@ -30,7 +29,7 @@
             <th></th>
         </tr>
 
-        @foreach (KeyValuePair<string, string> category in Model.CategoryDisplayItems)
+        @foreach (var category in Model.CategoryDisplayItems)
         {
             @* List all categories. *@
             <tr>
@@ -41,7 +40,7 @@
             </tr>
 
             @* List all effect for the appropriate category. *@
-            foreach (EffectViewModel effectViewModel in Model.EffectViewModels)
+            foreach (var effectViewModel in Model.EffectViewModels)
             {
                 if (effectViewModel.CategoryId == category.Key)
                 {
@@ -51,7 +50,7 @@
                         </td>
                         <td>
                             <div>
-                                @Html.ActionLink(Resources.Action_Edit, nameof(EffectController.CreateOrEdit), new { id = effectViewModel.Id }) |
+                                @Html.ActionLink(Resources.Action_Edit, nameof(EffectController.CreateOrEdit), new {id = effectViewModel.Id}) |
                                 @* Button is triggered in Effect.js *@
                                 <a href="#" class="delete-buttons" data-item-id="@effectViewModel.Id" data-item-name="@effectViewModel.Name">@Resources.Action_Delete</a>
                             </div>

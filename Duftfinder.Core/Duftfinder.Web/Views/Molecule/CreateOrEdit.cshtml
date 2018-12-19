@@ -8,9 +8,9 @@
 <div class="duftfinder-content">
     <h2>@Resources.Molecule_Molecule</h2>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "molecule-form" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new {id = "molecule-form"}))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
@@ -19,22 +19,22 @@
             <div class="form-group">
                 <label class="control-label col-md-2">@Resources.Molecule_Name</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">@Resources.Molecule_Substance</label>
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.SubstanceId, Model.SubstanceListItems, new { id = "substance", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.SubstanceId, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(model => model.SubstanceId, Model.SubstanceListItems, new {id = "substance", @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.SubstanceId, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a href="@Url.Action(nameof(MoleculeController.Index), new { lastEditedMoleculeId = Model.Id })" class="btn btn-secondary">@Resources.Action_Cancel</a>
-                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary" />
+                    <a href="@Url.Action(nameof(MoleculeController.Index), new {lastEditedMoleculeId = Model.Id})" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary"/>
                 </div>
             </div>
         </div>

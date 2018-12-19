@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Duftfinder.Database.Helpers;
 using System.Transactions;
+using Duftfinder.Database.Helpers;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Helpers;
@@ -15,208 +15,207 @@ using MongoDB.Driver;
 
 namespace Duftfinder.Database.Repositories
 {
-    /// <summary>
-    /// Represents the generic store of objects of a specific type.
-    /// Contains basic functionality for all other repositories.
-    /// </summary>
-    /// <author>Anna Krebs</author>
-    /// <seealso> href="http://selfdocumenting.net/a-quick-mongodb-repository/">selfdocumenting.net</seealso>  
-    public abstract class Repository<TEntity, TFilter> : IRepository<TEntity, TFilter> where TEntity : Entity where TFilter : Filter
-    {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+	/// <summary>
+	///     Represents the generic store of objects of a specific type.
+	///     Contains basic functionality for all other repositories.
+	/// </summary>
+	/// <author>Anna Krebs</author>
+	/// <seealso> href="http://selfdocumenting.net/a-quick-mongodb-repository/">selfdocumenting.net</seealso>
+	public abstract class Repository<TEntity, TFilter> : IRepository<TEntity, TFilter>
+		where TEntity : Entity where TFilter : Filter
+	{
+		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly MongoContext _dbContext;
+		private readonly IMongoCollection<TEntity> _collection;
 
-        private readonly IMongoCollection<TEntity> _collection;
+		private readonly MongoContext _dbContext;
 
-        // FindOptions are used when finding a document in MongoDB. 
-        // CollationStrength.Primary is used in order to perform comparison invariant of case.
-        private readonly FindOptions _findOptions = new FindOptions { Collation = new Collation(Constants.de, strength: CollationStrength.Primary) };
+		// FindOptions are used when finding a document in MongoDB. 
+		// CollationStrength.Primary is used in order to perform comparison invariant of case.
+		private readonly FindOptions _findOptions = new FindOptions
+			{Collation = new Collation(Constants.de, strength: CollationStrength.Primary)};
 
-        public Repository(MongoContext context)
-        {
-            _dbContext = context;
+		public Repository(MongoContext context)
+		{
+			_dbContext = context;
 
-            // Gets e.g. the essential oil mongo db collection from the database.
-            // -> GetCollection<TEntity>(collection name in MongoDB);
-            _collection = _dbContext.Database.GetCollection<TEntity>(typeof(TEntity).Name);
-        }
+			// Gets e.g. the essential oil mongo db collection from the database.
+			// -> GetCollection<TEntity>(collection name in MongoDB);
+			_collection = _dbContext.Database.GetCollection<TEntity>(typeof(TEntity).Name);
+		}
 
-        public abstract FilterDefinition<TEntity> ApplyFilter(TFilter filter, IMongoCollection<TEntity> collection);
+		/// <summary>
+		///     Gets all entries of a collection from MongoDB.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <returns></returns>
+		public async Task<IList<TEntity>> GetAllAsync(TFilter filter)
+		{
+			// Filter collection according to filter values. 
+			var queryFilter = ApplyFilter(filter, _collection);
 
-        public abstract SortDefinition<TEntity> ApplySorting(TFilter filter, IMongoCollection<TEntity> collection);
+			// Sort collection according to sorting defined in filter.
+			var sortDefinition = ApplySorting(filter, _collection);
 
-        /// <summary>
-        /// Gets all entries of a collection from MongoDB.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <returns></returns>
-        public async Task<IList<TEntity>> GetAllAsync(TFilter filter)
-        {
-            // Filter collection according to filter values. 
-            FilterDefinition<TEntity> queryFilter = ApplyFilter(filter, _collection);
+			// Get documents from MongoDB according to filter.
+			var documentList = await _collection.Find(queryFilter, _findOptions).Sort(sortDefinition).ToListAsync();
+			var entityList = MongoHelper<TEntity>.DeserializeBsonDocumentsToEntities(documentList);
 
-            // Sort collection according to sorting defined in filter.
-            SortDefinition<TEntity> sortDefinition = ApplySorting(filter, _collection);
+			return entityList;
+		}
 
-            // Get documents from MongoDB according to filter.
-            List<TEntity> documentList = await _collection.Find(queryFilter, _findOptions).Sort(sortDefinition).ToListAsync();
-            IList<TEntity> entityList = MongoHelper<TEntity>.DeserializeBsonDocumentsToEntities(documentList);
+		/// <summary>
+		///     Gets one specific entry from a collection in MongoDB.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="id"></param>
+		public async Task<TEntity> GetByIdAsync(string id)
+		{
+			// Create filter, that filters for ObjectId in MongoDB.
+			var idFilter = MongoHelper.GetFilter<TEntity>(Constants._id, new ObjectId(id));
 
-            return entityList;
-        }
+			// Get documents from MongoDB by id.
+			var documentList = await _collection.Find(idFilter).ToListAsync();
 
-        /// <summary>
-        /// Gets one specific entry from a collection in MongoDB.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="id"></param>
-        public async Task<TEntity> GetByIdAsync(string id)
-        {
-            // Create filter, that filters for ObjectId in MongoDB.
-            FilterDefinition<TEntity> idFilter = MongoHelper.GetFilter<TEntity>(Constants._id, new ObjectId(id));
+			if (documentList.Count > 0)
+			{
+				// Return single entity if document was found in MongoDB.
+				var entities = MongoHelper<TEntity>.DeserializeBsonDocumentsToEntities(documentList);
+				return entities.SingleOrDefault();
+			}
 
-            // Get documents from MongoDB by id.
-            List<TEntity> documentList = await _collection.Find(idFilter).ToListAsync();
+			Log.Error($"An unexpected error occurred while getting id. No entity with id {id} could be found.");
+			throw new ArgumentNullException(string.Format(Resources.Resources.Error_NoEntityWithIdFound, id));
+		}
 
-            if (documentList.Count > 0)
-            {
-                // Return single entity if document was found in MongoDB.
-                IList<TEntity> entities = MongoHelper<TEntity>.DeserializeBsonDocumentsToEntities(documentList);
-                return entities.SingleOrDefault();
-            }
+		/// <summary>
+		///     Inserts an entity in MongDB.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="entity"></param>
+		public async Task<ValidationResultList> InsertAsync(TEntity entity)
+		{
+			var validationResult = new ValidationResultList();
 
-            Log.Error($"An unexpected error occurred while getting id. No entity with id {id} could be found.");
-            throw new ArgumentNullException(string.Format(Resources.Resources.Error_NoEntityWithIdFound, id));
-        }
+			using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+			{
+				// Check, if entry already exists in database.
+				var isDuplicate = await MongoHelper<TEntity>.IsDuplicate(entity.GetPrimaryName(),
+					entity.GetPrimaryValue(), _collection, null);
 
-        /// <summary>
-        /// Inserts an entity in MongDB.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="entity"></param>
-        public async Task<ValidationResultList> InsertAsync(TEntity entity)
-        {
-            ValidationResultList validationResult = new ValidationResultList();
+				// If entity doesn't exist, insert in database.
+				if (!isDuplicate)
+					await _collection.InsertOneAsync(entity);
+				else
+					validationResult.Errors.Add(typeof(TEntity).Name, Resources.Resources.Error_EntityAlreadyExists);
 
-            using (TransactionScope ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
+				ts.Complete();
 
-                // Check, if entry already exists in database.
-                bool isDuplicate = await MongoHelper<TEntity>.IsDuplicate(entity.GetPrimaryName(), entity.GetPrimaryValue(), _collection, null);
+				Log.Info($"Inserted {entity} with id {entity.ObjectId} in database.");
+			}
 
-                // If entity doesn't exist, insert in database.
-                if (!isDuplicate)
-                {
-                    // Serialize entity to BsonDocument and insert.
-                    await _collection.InsertOneAsync(entity);
-                }
-                else
-                {
-                    // Add error to validation result, if entity already exists.
-                    validationResult.Errors.Add(typeof(TEntity).Name, Resources.Resources.Error_EntityAlreadyExists);
-                }
+			return validationResult;
+		}
 
-                ts.Complete();
+		/// <summary>
+		///     Updates an entity in MongDB.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="entity"></param>
+		/// <returns></returns>
+		public async Task<ValidationResultList> UpdateAsync(TEntity entity)
+		{
+			var validationResult = new ValidationResultList();
 
-                Log.Info($"Inserted {entity} with id {entity.ObjectId} in database.");
-            }
+			using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+			{
+				// Create filter, that filters for ObjectId in MongoDB.
+				var idFilter = MongoHelper.GetFilter<TEntity>(Constants._id, new ObjectId(entity.Id));
 
-            return validationResult;
-        }
+				// Check, if entry already exists in database.
+				var isDuplicate = await MongoHelper<TEntity>.IsDuplicate(entity.GetPrimaryName(),
+					entity.GetPrimaryValue(), _collection, entity.ObjectId);
 
-        /// <summary>
-        /// Updates an entity in MongDB.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        public async Task<ValidationResultList> UpdateAsync(TEntity entity)
-        {
-            ValidationResultList validationResult = new ValidationResultList();
+				ReplaceOneResult replaceResult = null;
+				// If changed entity doesn't exist, update in database.
+				if (!isDuplicate)
+				{
+					// Update the entry with the appropriate MongoDB id.
+					replaceResult = await _collection.ReplaceOneAsync(idFilter, entity);
 
-            using (TransactionScope ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                // Create filter, that filters for ObjectId in MongoDB.
-                FilterDefinition<TEntity> idFilter = MongoHelper.GetFilter<TEntity>(Constants._id, new ObjectId(entity.Id));
+					if (replaceResult.MatchedCount == 0)
+					{
+						// Add error to validation result, if entity wasn't found.
+						Log.Error($"No entity with id {entity.Id} was found.");
+						validationResult.Errors.Add(typeof(TEntity).Name,
+							string.Format(Resources.Resources.Error_NoEntityWithIdFound, entity.Id));
+					}
+				}
+				else
+				{
+					// Add error to validation result, if entity already exists.
+					validationResult.Errors.Add(typeof(TEntity).Name, Resources.Resources.Error_EntityAlreadyExists);
+				}
 
-                // Check, if entry already exists in database.
-                bool isDuplicate = await MongoHelper<TEntity>.IsDuplicate(entity.GetPrimaryName(), entity.GetPrimaryValue(), _collection, entity.ObjectId);
+				ts.Complete();
 
-                ReplaceOneResult replaceResult = null;
-                // If changed entity doesn't exist, update in database.
-                if (!isDuplicate)
-                {
-                    // Update the entry with the appropriate MongoDB id.
-                    replaceResult = await _collection.ReplaceOneAsync(idFilter, entity);
+				Log.Info($"Updated {replaceResult?.ModifiedCount ?? 0} entity with {entity.Id} in database.");
+			}
 
-                    if (replaceResult.MatchedCount == 0)
-                    {
-                        // Add error to validation result, if entity wasn't found.
-                        Log.Error($"No entity with id {entity.Id} was found.");
-                        validationResult.Errors.Add(typeof(TEntity).Name, string.Format(Resources.Resources.Error_NoEntityWithIdFound, entity.Id));
-                    }
-                }
-                else
-                {
-                    // Add error to validation result, if entity already exists.
-                    validationResult.Errors.Add(typeof(TEntity).Name, Resources.Resources.Error_EntityAlreadyExists);
-                }
+			return validationResult;
+		}
 
-                ts.Complete();
+		/// <summary>
+		///     Deletes an entity in MongDB.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="id"></param>
+		public async Task<ValidationResultList> DeleteAsync(string id)
+		{
+			var validationResult = new ValidationResultList();
 
-                Log.Info($"Updated {replaceResult?.ModifiedCount ?? 0} entity with {entity.Id} in database.");
-            }
+			using (var ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+			{
+				// Create filter, that filters for ObjectId in MongoDB.
+				var idFilter = MongoHelper.GetFilter<TEntity>(Constants._id, new ObjectId(id));
 
-            return validationResult;
-        }
+				// Delete the entry with the appropriate MongoDB id.
+				var deleteResult = await _collection.DeleteOneAsync(idFilter);
 
-        /// <summary>
-        /// Deletes an entity in MongDB.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="id"></param>
-        public async Task<ValidationResultList> DeleteAsync(string id)
-        {
-            ValidationResultList validationResult = new ValidationResultList();
+				if (deleteResult.DeletedCount == 0)
+				{
+					// Add error to validation result, if entity wasn't deleted.
+					Log.Error($"No entity with id {id} was deleted.");
+					validationResult.Errors.Add(typeof(TEntity).Name,
+						string.Format(Resources.Resources.Error_NoEntityWithIdDeleted, id));
+				}
 
-            using (TransactionScope ts = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {
-                // Create filter, that filters for ObjectId in MongoDB.
-                FilterDefinition<TEntity> idFilter = MongoHelper.GetFilter<TEntity>(Constants._id, new ObjectId(id));
+				ts.Complete();
 
-                // Delete the entry with the appropriate MongoDB id.
-                DeleteResult deleteResult = await _collection.DeleteOneAsync(idFilter);
+				Log.Info($"Deleted {deleteResult.DeletedCount} entity with {id} in database.");
+			}
 
-                if (deleteResult.DeletedCount == 0)
-                {
-                    // Add error to validation result, if entity wasn't deleted.
-                    Log.Error($"No entity with id {id} was deleted.");
-                    validationResult.Errors.Add(typeof(TEntity).Name, string.Format(Resources.Resources.Error_NoEntityWithIdDeleted, id));
-                }
+			return validationResult;
+		}
 
-                ts.Complete();
+		/// <summary>
+		///     Uses specific filter.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="filter"></param>
+		/// <returns></returns>
+		public async Task<IList<TEntity>> GetByFilterAsync(TFilter filter)
+		{
+			var queryFilter = ApplyFilter(filter, _collection);
 
-                Log.Info($"Deleted {deleteResult.DeletedCount} entity with {id} in database.");
-            }
+			// Get documents from MongoDB according to filter.
+			var documentList = await _collection.Find(queryFilter, _findOptions).ToListAsync();
+			var entityList = MongoHelper<TEntity>.DeserializeBsonDocumentsToEntities(documentList);
+			return entityList;
+		}
 
-            return validationResult;
-        }
+		public abstract FilterDefinition<TEntity> ApplyFilter(TFilter filter, IMongoCollection<TEntity> collection);
 
-        /// <summary>
-        /// Uses specific filter.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="filter"></param>
-        /// <returns></returns>
-        public async Task<IList<TEntity>> GetByFilterAsync(TFilter filter)
-        {
-            FilterDefinition<TEntity> queryFilter = ApplyFilter(filter, _collection);
-
-            // Get documents from MongoDB according to filter.
-            List<TEntity> documentList = await _collection.Find(queryFilter, _findOptions).ToListAsync();
-            IList<TEntity> entityList = MongoHelper<TEntity>.DeserializeBsonDocumentsToEntities(documentList);
-            return entityList;
-        }
-    }
+		public abstract SortDefinition<TEntity> ApplySorting(TFilter filter, IMongoCollection<TEntity> collection);
+	}
 }

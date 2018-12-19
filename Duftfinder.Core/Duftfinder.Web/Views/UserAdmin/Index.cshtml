@@ -1,6 +1,5 @@
 ﻿@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
-@using Duftfinder.Web.Models
 @model IEnumerable<Duftfinder.Web.Models.UserViewModel>
 
 @{
@@ -9,8 +8,8 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/dialogs")
-    @Scripts.Render("~/bundles/userAdmin")
+    <script src="/js/Dialog.js"></script>
+    <script src="/js/UserAdmin.js"></script>
 }
 
 <div id="user-admin" class="duftfinder-content">
@@ -46,7 +45,7 @@
             <th></th>
         </tr>
 
-        @foreach (UserViewModel item in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -72,7 +71,7 @@
                 </td>
                 <td>
                     <div>
-                        @Html.ActionLink(Resources.Action_Edit, nameof(UserAdminController.CreateOrEdit), new { id = item.Id }) |
+                        @Html.ActionLink(Resources.Action_Edit, nameof(UserAdminController.CreateOrEdit), new {id = item.Id}) |
                         @* Button is triggered in UserAdmin.js *@
                         <a href="#" class="delete-buttons" data-item-id="@item.Id" data-item-name="@item.Email">@Resources.Action_Delete</a>
                     </div>

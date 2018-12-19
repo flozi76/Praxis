@@ -1,6 +1,5 @@
 ﻿@using Duftfinder.Resources
-@using Duftfinder.Web.Models
-@model SearchResultViewModel
+@model Duftfinder.Web.Models.SearchResultViewModel
 
 <div id="effects-search-results-header" class="margin-bottom">
     <span>@Resources.SearchEffects_SearchResultFilterText</span>
@@ -37,7 +36,7 @@
             <th></th>
         </tr>
 
-        foreach (EssentialOilViewModel item in Model.SearchEssentialOilResults)
+        foreach (var item in Model.SearchEssentialOilResults)
         {
             <tr data-item-value-id="@item.Id">
                 <td>
@@ -50,7 +49,7 @@
                 <td class="d-none d-md-block">
                     @Html.DisplayFor(modelItem => item.NameLatin)
                 </td>
-                <td  id="match-amount">
+                <td id="match-amount">
                     @Html.DisplayFor(modelItem => item.MatchAmount)
                 </td>
                 <td>

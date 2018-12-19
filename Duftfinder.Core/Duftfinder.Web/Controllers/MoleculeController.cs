@@ -14,235 +14,230 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Duftfinder.Web.Controllers
 {
-    /// <summary>
-    /// The Controller for all "Moleküle" stuff in the "Adminbereich".
-    /// <author>Anna Krebs</author>
-    /// </summary>
-    [Authorize(Roles = Constants.Admin)]
-    public class MoleculeController : Controller
-    {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+	/// <summary>
+	///     The Controller for all "Moleküle" stuff in the "Adminbereich".
+	///     <author>Anna Krebs</author>
+	/// </summary>
+	[Authorize(Roles = Constants.Admin)]
+	public class MoleculeController : Controller
+	{
+		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly IMoleculeService _moleculeService;
+		private readonly IEffectMoleculeService _effectMoleculeService;
 
-        private readonly ISubstanceService _substanceService;
+		private readonly IEssentialOilMoleculeService _essentialOilMoleculeService;
 
-        private readonly IEssentialOilMoleculeService _essentialOilMoleculeService;
+		private readonly IMoleculeService _moleculeService;
 
-        private readonly IEffectMoleculeService _effectMoleculeService;
+		private readonly ISubstanceService _substanceService;
 
-        public MoleculeController(IMoleculeService moleculeService, ISubstanceService substanceService, IEssentialOilMoleculeService essentialOilMoleculeService, IEffectMoleculeService effectMoleculeService)
-        {
-            _moleculeService = moleculeService;
-            _substanceService = substanceService;
-            _essentialOilMoleculeService = essentialOilMoleculeService;
-            _effectMoleculeService = effectMoleculeService;
-        }
+		public MoleculeController(IMoleculeService moleculeService, ISubstanceService substanceService,
+			IEssentialOilMoleculeService essentialOilMoleculeService, IEffectMoleculeService effectMoleculeService)
+		{
+			_moleculeService = moleculeService;
+			_substanceService = substanceService;
+			_essentialOilMoleculeService = essentialOilMoleculeService;
+			_effectMoleculeService = effectMoleculeService;
+		}
 
-        public async Task<ActionResult> Index(string lastEditedMoleculeId)
-        {
-            MoleculeFilter filter = new MoleculeFilter();
+		public async Task<ActionResult> Index(string lastEditedMoleculeId)
+		{
+			var filter = new MoleculeFilter();
 
-            // Get values from database.
-            IList<Molecule> molecules = await _moleculeService.GetAllAsync(filter);
-            IList<Substance> substances = await _substanceService.GetAllAsync(new SubstanceFilter());
+			// Get values from database.
+			var molecules = await _moleculeService.GetAllAsync(filter);
+			var substances = await _substanceService.GetAllAsync(new SubstanceFilter());
 
-            IList<MoleculeViewModel> moleculeViewModels = new List<MoleculeViewModel>();
-            
-            // Create list of molecules for view. 
-            foreach (Molecule molecule in molecules)
-            {
-                MoleculeViewModel model = new MoleculeViewModel(molecule, null);
+			IList<MoleculeViewModel> moleculeViewModels = new List<MoleculeViewModel>();
 
-                if (molecule.SubstanceIdString != null)
-                {
-                    Substance substance = await _moleculeService.GetSubstanceForMoleculeAsync(molecule.SubstanceIdString);
+			// Create list of molecules for view. 
+			foreach (var molecule in molecules)
+			{
+				var model = new MoleculeViewModel(molecule, null);
 
-                    // Set name of substance for molecule.
-                    model.SubstanceValue = substance.Name;
-                }
+				if (molecule.SubstanceIdString != null)
+				{
+					var substance = await _moleculeService.GetSubstanceForMoleculeAsync(molecule.SubstanceIdString);
 
-                moleculeViewModels.Add(model);
-            }
+					// Set name of substance for molecule.
+					model.SubstanceValue = substance.Name;
+				}
 
-            // Create view model for Index view.
-            MoleculeViewModelIndex moleculeViewModelIndex = new MoleculeViewModelIndex(moleculeViewModels, substances);
+				moleculeViewModels.Add(model);
+			}
 
-            // Set value to where to scroll to.
-            moleculeViewModelIndex.LastEditedMoleculeId = lastEditedMoleculeId;
+			// Create view model for Index view.
+			var moleculeViewModelIndex = new MoleculeViewModelIndex(moleculeViewModels, substances);
 
-            return View(moleculeViewModelIndex);
-        }
+			// Set value to where to scroll to.
+			moleculeViewModelIndex.LastEditedMoleculeId = lastEditedMoleculeId;
 
-        /// <summary>
-        /// Shows view for create or edit of molecule.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<ActionResult> CreateOrEdit(string id)
-        {
-            IList<Substance> substances = await _substanceService.GetAllAsync(new SubstanceFilter());
+			return View(moleculeViewModelIndex);
+		}
 
-            MoleculeViewModel model;
+		/// <summary>
+		///     Shows view for create or edit of molecule.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpGet]
+		public async Task<ActionResult> CreateOrEdit(string id)
+		{
+			var substances = await _substanceService.GetAllAsync(new SubstanceFilter());
 
-            // Get MoleculeViewModel according to whether is edit or create.
-            if (!string.IsNullOrEmpty(id))
-            {
-                // Edit
-                Molecule molecule = await _moleculeService.GetByIdAsync(id);
+			MoleculeViewModel model;
 
-                if (molecule == null)
-                {
-                    Log.Error($"An unexpected error occurred while getting id. No entity with id {id} could be found.");
-                    throw new ArgumentNullException(string.Format(Resources.Resources.Error_NoEntityWithIdFound, id));
-                }
+			// Get MoleculeViewModel according to whether is edit or create.
+			if (!string.IsNullOrEmpty(id))
+			{
+				// Edit
+				var molecule = await _moleculeService.GetByIdAsync(id);
 
-                model = new MoleculeViewModel(molecule, substances);
-            }
-            else
-            {
-                // Create
-                model = new MoleculeViewModel(null, substances);
-            }
+				if (molecule == null)
+				{
+					Log.Error($"An unexpected error occurred while getting id. No entity with id {id} could be found.");
+					throw new ArgumentNullException(string.Format(Resources.Resources.Error_NoEntityWithIdFound, id));
+				}
 
-            return View(model);
-        }
+				model = new MoleculeViewModel(molecule, substances);
+			}
+			else
+			{
+				// Create
+				model = new MoleculeViewModel(null, substances);
+			}
 
-        /// <summary>
-        /// Creates or edits a molecule after save was clicked.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult> CreateOrEdit(MoleculeViewModel model)
-        {
-            ValidationResultList validationResult = new ValidationResultList();
+			return View(model);
+		}
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    Molecule molecule = new Molecule();
+		/// <summary>
+		///     Creates or edits a molecule after save was clicked.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="model"></param>
+		/// <returns></returns>
+		[HttpPost]
+		public async Task<ActionResult> CreateOrEdit(MoleculeViewModel model)
+		{
+			var validationResult = new ValidationResultList();
 
-                    // Map view model to entity.
-                    model.MapViewModelToEntity(molecule);
+			if (ModelState.IsValid)
+				try
+				{
+					var molecule = new Molecule();
 
-                    // Edit or create
-                    if (molecule.Id != null)
-                    {
-                        // Edit
-                        // Only update if molecule name doesn't already exist.
-                        validationResult = await _moleculeService.UpdateAsync(molecule);
-                    }
-                    else
-                    {
-                        // Create
-                        // Only insert if molecule name doesn't already exist.
-                        validationResult = await _moleculeService.InsertAsync(molecule);
-                        model.Id = molecule.Id;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error($"An unexpected error occurred while inserting or editing: {e}");
-                    throw new ArgumentException(Resources.Resources.Error_UnexpectedError);
-                }
-            }
+					// Map view model to entity.
+					model.MapViewModelToEntity(molecule);
 
-            // Show validation result, if validation error occurred while 
-            // inserting or if ModelState is invalid.
-            if (validationResult.HasErrors || !ModelState.IsValid)
-            {
-                AddValidationResultsToModelStateErrors(validationResult.Errors);
+					// Edit or create
+					if (molecule.Id != null)
+					{
+						// Edit
+						// Only update if molecule name doesn't already exist.
+						validationResult = await _moleculeService.UpdateAsync(molecule);
+					}
+					else
+					{
+						// Create
+						// Only insert if molecule name doesn't already exist.
+						validationResult = await _moleculeService.InsertAsync(molecule);
+						model.Id = molecule.Id;
+					}
+				}
+				catch (Exception e)
+				{
+					Log.Error($"An unexpected error occurred while inserting or editing: {e}");
+					throw new ArgumentException(Resources.Resources.Error_UnexpectedError);
+				}
 
-                // Set substances to display in drop down.
-                IList<Substance> substances = await _substanceService.GetAllAsync(new SubstanceFilter());
-                model.Substances = substances;
+			// Show validation result, if validation error occurred while 
+			// inserting or if ModelState is invalid.
+			if (validationResult.HasErrors || !ModelState.IsValid)
+			{
+				AddValidationResultsToModelStateErrors(validationResult.Errors);
 
-                Log.Info("Show CreateOrEdit");
-                return View(nameof(CreateOrEdit), model);
-            }
+				// Set substances to display in drop down.
+				var substances = await _substanceService.GetAllAsync(new SubstanceFilter());
+				model.Substances = substances;
 
-            Log.Info("Redirect to Index");
-            return RedirectToAction(nameof(Index), new { lastEditedMoleculeId = model.Id });
-        }
+				Log.Info("Show CreateOrEdit");
+				return View(nameof(CreateOrEdit), model);
+			}
 
-        /// <summary>
-        /// Shows delete confirmation after delete was clicked.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult> ShowConfirmDelete(string id, string name)
-        {
-            // Check for assigned molecules & show confirmation message appropriately.
-            IList<EssentialOilMolecule> essentialOilMolecules = await _essentialOilMoleculeService.GetByFilterAsync(new EssentialOilMoleculeFilter { MoleculeId = id });
-            IList<EffectMolecule> effectMolecules = await _effectMoleculeService.GetByFilterAsync(new EffectMoleculeFilter { MoleculeId = id });
+			Log.Info("Redirect to Index");
+			return RedirectToAction(nameof(Index), new {lastEditedMoleculeId = model.Id});
+		}
 
-            string moleculeAlreadyAssigned = string.Empty;
-            if (essentialOilMolecules.Count > 0 || effectMolecules.Count > 0)
-            {
-                // Molecule is assigned.
-                moleculeAlreadyAssigned = Resources.Resources.Confirmation_Delete_MoleculeAlreadyAssigned;
-            }
+		/// <summary>
+		///     Shows delete confirmation after delete was clicked.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="id"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		[HttpPost]
+		public async Task<ActionResult> ShowConfirmDelete(string id, string name)
+		{
+			// Check for assigned molecules & show confirmation message appropriately.
+			var essentialOilMolecules =
+				await _essentialOilMoleculeService.GetByFilterAsync(new EssentialOilMoleculeFilter {MoleculeId = id});
+			var effectMolecules =
+				await _effectMoleculeService.GetByFilterAsync(new EffectMoleculeFilter {MoleculeId = id});
 
-            ConfirmationViewModel model = new ConfirmationViewModel
-            {
-                Id = id, Name = name,
-                DialogTitle = Resources.Resources.Confirmation_Delete_Title,
-                DialogText = $"{Resources.Resources.Confirmation_Delete_Text} {moleculeAlreadyAssigned}",
-                Action = Constants.MoleculeDelete
-            };
+			var moleculeAlreadyAssigned = string.Empty;
+			if (essentialOilMolecules.Count > 0 || effectMolecules.Count > 0)
+				moleculeAlreadyAssigned = Resources.Resources.Confirmation_Delete_MoleculeAlreadyAssigned;
 
-            return PartialView("~/Views/Shared/_Confirmation.cshtml", model);
-        }
+			var model = new ConfirmationViewModel
+			{
+				Id = id, Name = name,
+				DialogTitle = Resources.Resources.Confirmation_Delete_Title,
+				DialogText = $"{Resources.Resources.Confirmation_Delete_Text} {moleculeAlreadyAssigned}",
+				Action = Constants.MoleculeDelete
+			};
 
-        /// <summary>
-        /// Deletes a molecule after delete was clicked.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult> Delete(string id)
-        {
-            try
-            {
-                ValidationResultList validationResult = await _moleculeService.DeleteMoleculeWithAssignmentsAsync(id);
+			return PartialView("~/Views/Shared/_Confirmation.cshtml", model);
+		}
 
-                // Show validation result, if error occurred.
-                if (validationResult.HasErrors)
-                {
-                    Log.Error($"Molecule with id {id} could not be deleted");
-                    return new JsonResult($"{validationResult.Errors.Values.SingleOrDefault() }");
-                }
-            }
-            catch (Exception e)
-            {
-                // Show general error message if exception occurred.
-                Log.Error($"An unexpected error occurred while deleting: {e}");
-                return new JsonResult($"{Resources.Resources.Error_UnexpectedError }");
-            }
+		/// <summary>
+		///     Deletes a molecule after delete was clicked.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpPost]
+		public async Task<ActionResult> Delete(string id)
+		{
+			try
+			{
+				var validationResult = await _moleculeService.DeleteMoleculeWithAssignmentsAsync(id);
 
-            return new EmptyResult();
-        }
+				// Show validation result, if error occurred.
+				if (validationResult.HasErrors)
+				{
+					Log.Error($"Molecule with id {id} could not be deleted");
+					return new JsonResult($"{validationResult.Errors.Values.SingleOrDefault()}");
+				}
+			}
+			catch (Exception e)
+			{
+				// Show general error message if exception occurred.
+				Log.Error($"An unexpected error occurred while deleting: {e}");
+				return new JsonResult($"{Resources.Resources.Error_UnexpectedError}");
+			}
 
-        /// <summary>
-        /// Add validation results errors to ModelState in order to show in validation summary on view.
-        /// </summary>
-        /// <author>Anna Krebs</author>
-        /// <param name="errors"></param>
-        private void AddValidationResultsToModelStateErrors(IDictionary<string, string> errors)
-        {
-            foreach (KeyValuePair<string, string> error in errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Value);
-            }
-        }
-    }
+			return new EmptyResult();
+		}
+
+		/// <summary>
+		///     Add validation results errors to ModelState in order to show in validation summary on view.
+		/// </summary>
+		/// <author>Anna Krebs</author>
+		/// <param name="errors"></param>
+		private void AddValidationResultsToModelStateErrors(IDictionary<string, string> errors)
+		{
+			foreach (var error in errors) ModelState.AddModelError(string.Empty, error.Value);
+		}
+	}
 }

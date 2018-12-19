@@ -1,5 +1,4 @@
-﻿@using Duftfinder.Domain.Entities
-@using Duftfinder.Domain.Helpers
+﻿@using Duftfinder.Domain.Helpers
 @using Duftfinder.Resources
 @model Duftfinder.Web.Models.EssentialOilViewModel
 
@@ -63,29 +62,29 @@
             // Effects 
             if (Model.Effects.Any())
             {
-                 // Don't show effects, if no effect is assigned.
-                 <div class="row margin-top-small">
-                     <div class="col-md-8 col-sm-7 col-7">
-                         <label class="title">@Resources.SearchEssentialOil_AssignedEffects</label>
-                     </div>
-                     <div class="col-md-4 col-sm-5 col-5 effect-degree">
-                         <label class="title">@Resources.SearchEssentialOil_EffectDegree</label>
-                     </div>
-                 </div>
+                // Don't show effects, if no effect is assigned.
+                <div class="row margin-top-small">
+                    <div class="col-md-8 col-sm-7 col-7">
+                        <label class="title">@Resources.SearchEssentialOil_AssignedEffects</label>
+                    </div>
+                    <div class="col-md-4 col-sm-5 col-5 effect-degree">
+                        <label class="title">@Resources.SearchEssentialOil_EffectDegree</label>
+                    </div>
+                </div>
             }
 
-            foreach (Effect effect in Model.Effects)
+            foreach (var effect in Model.Effects)
             {
-                 <div class="row">
-                     <div class="col-md-8 col-sm-7 col-7">
-                         <label>@effect.Name</label>
-                     </div>
-                     <div class="col-md-4 col-sm-5 col-5">
-                         @* The slider. Class col-md-12 is set in Slider.js *@
-                         <input class="slider" type="text" data-slider-enabled="false" data-slider-min="0" data-slider-max="4" data-slider-step="1" data-slider-value="@effect.EffectDegree"/>
-                     </div>
-                 </div>
-             }
+                <div class="row">
+                    <div class="col-md-8 col-sm-7 col-7">
+                        <label>@effect.Name</label>
+                    </div>
+                    <div class="col-md-4 col-sm-5 col-5">
+                        @* The slider. Class col-md-12 is set in Slider.js *@
+                        <input class="slider" type="text" data-slider-enabled="false" data-slider-min="0" data-slider-max="4" data-slider-step="1" data-slider-value="@effect.EffectDegree"/>
+                    </div>
+                </div>
+            }
         }
 
         @* Molecules *@
@@ -102,10 +101,10 @@
             </div>
         }
 
-        @foreach (Molecule molecule in Model.Molecules)
+        @foreach (var molecule in Model.Molecules)
         {
             // Show e.g. "Aromatische Aldehyde allgemein" if is general molecule..
-            string isGeneralText = molecule.IsGeneral ? $"{Resources.Molecule_General} " : "";
+            var isGeneralText = molecule.IsGeneral ? $"{Resources.Molecule_General} " : "";
 
             <div class="row">
                 <div class="col-md-8 col-sm-7 col-7">
@@ -145,9 +144,9 @@
                 @if (Model.SearchEffects != null)
                 {
                     @* Hidden form in order to keep the SearchEffects in order to restore the search conditions, if "Zurück" is clicked. *@
-                    using (Html.BeginForm(null, null, FormMethod.Post, new { id = "search-effects-hidden-form" }))
+                    using (Html.BeginForm(null, null, FormMethod.Post, new {id = "search-effects-hidden-form"}))
                     {
-                        for (int i = 0; i < Model.SearchEffects.Count; i++)
+                        for (var i = 0; i < Model.SearchEffects.Count; i++)
                         {
                             @Html.Hidden("[" + i + "].SearchEffectText", Model.SearchEffects[i].SearchEffectText)
                             @Html.Hidden("[" + i + "].DiscomfortValue", Model.SearchEffects[i].DiscomfortValue)
@@ -160,7 +159,7 @@
                 else if (Model.SearchEssentialOilText != null)
                 {
                     @* Hidden form in order to keep the SearchEssentialOilText in order to restore the search conditions, if "Zurück" is clicked. *@
-                    using (Html.BeginForm(null, null, FormMethod.Post, new { id = "search-essential-oil-hidden-form" }))
+                    using (Html.BeginForm(null, null, FormMethod.Post, new {id = "search-essential-oil-hidden-form"}))
                     {
                         @Html.HiddenFor(model => model.SearchEssentialOilText)
                     }

@@ -1,6 +1,5 @@
 ﻿@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
-
 @model Duftfinder.Web.Models.AssignMoleculeViewModel
 
 @{
@@ -9,21 +8,21 @@
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/essentialOil")
+    <script src="/js/EssentialOil.js"></script>
 }
 
 @{
     // Disable Subnavigation, if Create.
-    string id = string.IsNullOrEmpty(Model.EssentialOilId) ? "" : Model.EssentialOilId;
+    var id = string.IsNullOrEmpty(Model.EssentialOilId) ? "" : Model.EssentialOilId;
     @Html.Partial("_Subnavigation", id)
-} 
+}
 
 <div class="duftfinder-content">
     <h2>@Resources.EssentialOil_AssignMolecule</h2>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "assign-molecule-form" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new {id = "assign-molecule-form"}))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.EssentialOilId)
@@ -45,7 +44,7 @@
                     </th>
                 </tr>
 
-                @foreach (KeyValuePair<string, string> substance in Model.SubstanceDisplayItems)
+                @foreach (var substance in Model.SubstanceDisplayItems)
                 {
                     @* List all substances. *@
                     <tr>
@@ -54,9 +53,9 @@
                         </td>
                         <td></td>
                     </tr>
-                
+
                     @* List all molecules for the appropriate substance. *@
-                    for (int i = 0; i < Model.AssignMolecules.Count; i++)
+                    for (var i = 0; i < Model.AssignMolecules.Count; i++)
                     {
                         if (Model.AssignMolecules[i].SubstanceIdString == substance.Key)
                         {
@@ -70,8 +69,8 @@
                                 @* Workaround to get items of model list in HttpPost of Controller *@
                                 <td>
                                     <div class="molecule-percentage">
-                                        @Html.TextBox("[" + i + "].MoleculePercentage", Model.AssignMolecules[i].MoleculePercentage, new { @class = "form-control small-area numeric-only" })
-                                        @Html.ValidationMessage("[" + i + "].MoleculePercentage", "", new { @class = "text-danger" })
+                                        @Html.TextBox("[" + i + "].MoleculePercentage", Model.AssignMolecules[i].MoleculePercentage, new {@class = "form-control small-area numeric-only"})
+                                        @Html.ValidationMessage("[" + i + "].MoleculePercentage", "", new {@class = "text-danger"})
                                     </div>
                                 </td>
                             </tr>
@@ -79,18 +78,17 @@
                     }
                 }
             </table>
-        
+
             @{
                 // Disable "Save" button if no molecules exist is list.
-                string disabled = Model.AssignMolecules.Count == 0 ? "disabled" : "";
+                var disabled = Model.AssignMolecules.Count == 0 ? "disabled" : "";
             }
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a href="@Url.Action(nameof(EssentialOilController.Index), new { lastEditedEssentialOilId = Model.EssentialOilId })" class="btn btn-secondary">@Resources.Action_Cancel</a>
-                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary @disabled" />
+                    <a href="@Url.Action(nameof(EssentialOilController.Index), new {lastEditedEssentialOilId = Model.EssentialOilId})" class="btn btn-secondary">@Resources.Action_Cancel</a>
+                    <input type="submit" value="@Resources.Action_Save" class="btn btn-primary @disabled"/>
                 </div>
             </div>
         </div>
     }
 </div>
-

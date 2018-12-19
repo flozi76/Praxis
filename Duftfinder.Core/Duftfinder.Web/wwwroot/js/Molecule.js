@@ -1,4 +1,4 @@
-﻿var Molecule = (function () {
+﻿var Molecule = (function() {
 
     // Define Urls for HttpPost on Controllers 
     var confirmDeleteUrl = "/Molecule/ShowConfirmDelete";
@@ -16,9 +16,10 @@
 
     function initializeElements() {
         // Click on "Löschen" link.
-        $("#molecules .delete-buttons").on("click", function (e) {
-            Dialog.showDialog(e, confirmDeleteUrl);
-        });
+        $("#molecules .delete-buttons").on("click",
+            function(e) {
+                Dialog.showDialog(e, confirmDeleteUrl);
+            });
     }
 
     return {
@@ -26,6 +27,6 @@
     };
 })();
 
-$(function () {
+$(function() {
     Molecule.init();
 });
