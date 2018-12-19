@@ -12,11 +12,6 @@ namespace Duftfinder.Database.Helpers
 	{
 		public MongoContext(IConfiguration configuration)
 		{
-			//TODO
-			// Get connection string from Web.config.
-			//string mongoDatabaseName = ConfigurationManager.AppSettings[Constants.MongoDatabaseName]; // appharbor_3ddx5860
-			//string connectionString = ConfigurationManager.AppSettings[Constants.MongoConnectionString]; // mongodb://admin:tfuD1820@ds141766.mlab.com:41766/appharbor_3ddx5860 
-
 			//string mongoDatabaseName = "duftfinder";
 			var mongoDatabaseName = configuration["MongoDatabaseName"];
 			//string connectionString = "mongodb://localhost:27017";
