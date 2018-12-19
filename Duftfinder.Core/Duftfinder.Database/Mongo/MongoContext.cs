@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
-namespace Duftfinder.Database.Helpers
+namespace Duftfinder.Database.Mongo
 {
 	/// <summary>
 	///     Creates connection to the database.

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Duftfinder.Database.Helpers;
+using Duftfinder.Database.Mongo;
 using Duftfinder.Domain.Interfaces.Repositories;
 
 namespace Duftfinder.Database.Repositories

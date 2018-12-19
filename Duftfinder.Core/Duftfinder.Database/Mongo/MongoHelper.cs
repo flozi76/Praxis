@@ -7,7 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
-namespace Duftfinder.Database.Helpers
+namespace Duftfinder.Database.Mongo
 {
 	/// <summary>
 	///     Contains helper stuff for MongoDB.

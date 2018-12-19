@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Duftfinder.Database.Helpers;
+using Duftfinder.Database.Mongo;
 using Duftfinder.Domain.Entities;
 using Duftfinder.Domain.Filters;
 using Duftfinder.Domain.Helpers;

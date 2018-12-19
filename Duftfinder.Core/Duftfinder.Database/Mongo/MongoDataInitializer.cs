@@ -8,7 +8,7 @@ using log4net;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Duftfinder.Database.Helpers
+namespace Duftfinder.Database.Mongo
 {
 	/// <summary>
 	///     Initializes all the predefined values in MongoDB.

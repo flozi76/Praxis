@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using Duftfinder.Business.Services;
-using Duftfinder.Database.Helpers;
+using Duftfinder.Database.Mongo;
 using Duftfinder.Database.Repositories;
 using Duftfinder.Domain.Interfaces.Repositories;
 using Duftfinder.Domain.Interfaces.Services;
 
-namespace Duftfinder.Ioc.Helpers
+namespace Duftfinder.Ioc
 {
 	public static class ContainerConfig
 	{
