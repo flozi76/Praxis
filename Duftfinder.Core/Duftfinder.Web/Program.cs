@@ -1,4 +1,5 @@
-﻿using Autofac.Extensions.DependencyInjection;
+﻿using System.IO;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,8 @@ namespace Duftfinder
 					logging.AddDebug();
 					logging.AddEventSourceLogger();
 				})
-				.UseStartup<Startup>();
+				.UseStartup<Startup>()
+				.UseContentRoot(Directory.GetCurrentDirectory());
 		}
 	}
 }

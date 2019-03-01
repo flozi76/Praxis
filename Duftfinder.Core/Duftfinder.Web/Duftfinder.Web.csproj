@@ -1,13 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>b9e20c92-ce2b-47cc-b268-723d530a1286</UserSecretsId>
     <AssemblyName>duftfinder.web</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Compile Remove="Views\Configuration\**" />
     <Compile Remove="Views\Effect\**" />
     <Compile Remove="Views\EssentialOil\**" />
@@ -36,7 +38,7 @@
     <None Remove="Views\SearchEffects\**" />
     <None Remove="Views\Settings\**" />
     <None Remove="Views\UserAdmin\**" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <ItemGroup>
     <None Include="Views\Configuration\Edit.cshtml" />

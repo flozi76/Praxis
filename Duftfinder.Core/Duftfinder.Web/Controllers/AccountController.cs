@@ -13,6 +13,7 @@ using Duftfinder.Web.Models;
 using log4net;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Duftfinder.Web.Controllers
 {
@@ -25,14 +26,15 @@ namespace Duftfinder.Web.Controllers
 		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
 		private readonly IDuftfinderAuthenticationService _duftfinderAuthenticationService;
+		private readonly ILogger<AccountController> _logger;
 
 		private readonly IUserService _userService;
 
-		public AccountController(IUserService userService,
-			IDuftfinderAuthenticationService duftfinderAuthenticationService)
+		public AccountController(IUserService userService, IDuftfinderAuthenticationService duftfinderAuthenticationService, ILogger<AccountController> logger)
 		{
 			_userService = userService;
 			_duftfinderAuthenticationService = duftfinderAuthenticationService;
+			_logger = logger;
 		}
 
 		/// <summary>
@@ -44,6 +46,7 @@ namespace Duftfinder.Web.Controllers
 		[HttpGet]
 		public ActionResult Login(string email)
 		{
+			_logger.LogInformation($"Performing Login for email: {email}");
 			var model = new LoginViewModel {Email = email};
 
 			return View(model);
