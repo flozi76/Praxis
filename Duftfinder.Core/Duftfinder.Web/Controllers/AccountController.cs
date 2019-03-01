@@ -131,6 +131,7 @@ namespace Duftfinder.Web.Controllers
 						var principal = new ClaimsPrincipal(identity);
 
 						// sign-in
+						Log.Info($"User {user} is signing in with email {user.Email}.");
 						await HttpContext.SignInAsync(principal);
 
 

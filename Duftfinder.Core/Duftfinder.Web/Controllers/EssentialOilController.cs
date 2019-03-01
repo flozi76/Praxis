@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using Duftfinder.Web.Helpers;
 using Duftfinder.Web.Models;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Duftfinder.Web.Controllers
@@ -107,6 +109,64 @@ namespace Duftfinder.Web.Controllers
 			}
 
 			return View(model);
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> CreateOrEdit(EssentialOilViewModel model, IFormFile uploadFile)
+		{
+			ValidationResultList validationResult = new ValidationResultList();
+			EssentialOil essentialOil = new EssentialOil();
+
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					if (uploadFile?.Length > 0)
+					{
+						// Get file name & base 64 string for picture.
+						essentialOil.PictureFileName = Path.GetFileName(uploadFile.FileName);
+						essentialOil.PictureDataAsString = await _conversionHelper.ResizeAndGenerateBase64StringForPicture(uploadFile);
+					}
+
+					// Map view model to entity.
+					model.MapViewModelToEntity(essentialOil);
+
+					// Edit or create
+					if (essentialOil.Id != null)
+					{
+						// Edit
+						// Only update if essential oil name doesn't already exist.
+						validationResult = await _essentialOilService.UpdateAsync(essentialOil);
+					}
+					else
+					{
+						// Create
+						// Only insert if essential oil name doesn't already exist.
+						validationResult = await _essentialOilService.InsertAsync(essentialOil);
+					}
+				}
+				catch (Exception e)
+				{
+					Log.Error($"CreateOrEdit. An unexpected error occurred while inserting or editing: {e}");
+					throw new ArgumentException(Resources.Resources.Error_UnexpectedError);
+				}
+			}
+
+			// Show validation result, if validation error occurred while 
+			// inserting or if ModelState is invalid.
+			if (validationResult.HasErrors || !ModelState.IsValid)
+			{
+				AddValidationResultsToModelStateErrors(validationResult.Errors);
+
+				Log.Info("Show CreateOrEdit");
+				return View(nameof(CreateOrEdit), model);
+			}
+
+			// If form is valid, navigate to AssignMolecule.
+			Log.Info("Redirect to AssignMolecule");
+
+
+			return RedirectToAction(nameof(AssignMolecule), new { id = model.Id });
 		}
 
 		/// <summary>
