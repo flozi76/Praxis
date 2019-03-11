@@ -7,13 +7,6 @@ services:
       context: ./Duftfinder.Core
     environment:
       - MongoDatabaseName=duftfinder
-      - MongoConnectionString=mongodb://duftfinder.db:27017
+      - MongoConnectionString=mongodb+srv://administrator:AHOZ5pn18Gari4IZ@duftfinder-vdzwu.mongodb.net/test?retryWrites=true
     ports: 
       - "8080:80"
-    depends_on:
-      - duftfinder.db
-
-  duftfinder.db:
-    image: flozi76/duftfinder.db.init
-    ports:
-      - "27017:27017"

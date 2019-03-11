@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  duftfinder.web:
+    #image: flozi76/duftfinder.web
+    build:
+      context: ./Duftfinder.Core
+    environment:
+      - MongoDatabaseName=duftfinder
+      - MongoConnectionString=mongodb://duftfinder.db:27017
+    ports: 
+      - "8080:80"
+    depends_on:
+      - duftfinder.db
+
+  duftfinder.db:
+    image: flozi76/duftfinder.db.init
+    ports:
+      - "27017:27017"
