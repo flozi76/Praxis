@@ -4,5 +4,5 @@ services:
   duftfinder.web:
     environment:
       - MongoDatabaseName=duftfinder
-      - MongoConnectionString=mongodb+srv://administrator:AHOZ5pn18Gari4IZ@duftfinder-vdzwu.mongodb.net/test?retryWrites=true
+      - MongoConnectionString=mongodb+srv://duftfinderweb:aed72ziGn0RE209oAbcR@duftfinder-vdzwu.mongodb.net/test?retryWrites=true
    
