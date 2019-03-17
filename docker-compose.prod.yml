@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  duftfinder.web:
-    environment:
-      - MongoDatabaseName=duftfinder
-      - MongoConnectionString=mongodb+srv://duftfinderweb:aed72ziGn0RE209oAbcR@duftfinder-vdzwu.mongodb.net/test?retryWrites=true
-   
