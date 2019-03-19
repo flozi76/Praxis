@@ -18,6 +18,7 @@ namespace Duftfinder
 			return WebHost.CreateDefaultBuilder(args)
 				.UseKestrel()
 				.ConfigureServices(services => services.AddAutofac())
+				.UseApplicationInsights()
 				.ConfigureLogging((hostingContext, logging) =>
 				{
 					logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));

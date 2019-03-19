@@ -1,7 +1,8 @@
 ﻿@using Duftfinder.Domain.Helpers
-@using Duftfinder.Resources
 @using Duftfinder.Web.Controllers
+@using Microsoft.ApplicationInsights.AspNetCore
 @using Microsoft.AspNetCore.Html
+@using Resources = Duftfinder.Resources.Resources
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,9 @@
 
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
-
+    @inject JavaScriptSnippet JavaScriptSnippet
+    @Html.Raw(JavaScriptSnippet.FullScript)
+    @*@Html.Raw(JavaScriptSnippet.FullScript)*@
     @*@Styles.Render("~/Content/css")*@
 </head>
 <body>
@@ -72,7 +75,7 @@
             // Get application version from helper class.
             // HtmlString applicationVersion = Html.ApplicationVersion();
             // TODO: v
-            var applicationVersion = new HtmlString("1.1.0.1");
+            var applicationVersion = new HtmlString("1.1.2.1");
         }
         <span class="margin-left-big">@Resources.Layout_Version @applicationVersion</span>
 
