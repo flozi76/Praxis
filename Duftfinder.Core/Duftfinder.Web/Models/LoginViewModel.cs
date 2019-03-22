@@ -16,12 +16,9 @@ namespace Duftfinder.Web.Models
 			ErrorMessageResourceName = "Error_InvalidEmailLength")]
 		public string Email { get; set; }
 
-		[Required(ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPassword")]
-		[StringLength(16, ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPassword")]
-		[MinLength(6, ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPassword")]
+		//[Required(ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "Error_InvalidPassword")]
+		[StringLength(16, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "Error_InvalidPassword")]
+		[MinLength(6, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "Error_InvalidPassword")]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 	}

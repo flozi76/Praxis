@@ -113,6 +113,11 @@ namespace Duftfinder.Web.Models
 			{
 				IList<SelectListItem> roleList = new List<SelectListItem>();
 
+				if (Roles == null)
+				{
+					return roleList;
+				}
+
 				foreach (var role in Roles)
 				{
 					RoleValueString = role.Name;

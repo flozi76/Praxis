@@ -17,14 +17,10 @@ namespace Duftfinder.Web.Models
 			ErrorMessageResourceName = "Error_InputRequired")]
 		public string LastName { get; set; }
 
-		[Required(ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPassword")]
-		[StringLength(16, ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPassword")]
-		[MinLength(6, ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPassword")]
-		[Compare("Password", ErrorMessageResourceType = typeof(Resources.Resources),
-			ErrorMessageResourceName = "Error_InvalidPasswordConfirmation")]
+		//[Required(ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "Error_InvalidPassword")]
+		[StringLength(16, ErrorMessageResourceType = typeof(Resources.Resources),ErrorMessageResourceName = "Error_InvalidPassword")]
+		[MinLength(6, ErrorMessageResourceType = typeof(Resources.Resources),ErrorMessageResourceName = "Error_InvalidPassword")]
+		[Compare("Password", ErrorMessageResourceType = typeof(Resources.Resources),ErrorMessageResourceName = "Error_InvalidPasswordConfirmation")]
 		[DataType(DataType.Password)]
 		public string Password2 { get; set; }
 
