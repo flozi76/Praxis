@@ -26,7 +26,6 @@
 {"_id":{"$oid":"5ae8b6942a3e0da91010e4a9"},"Name":"Bisbolol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
 {"_id":{"$oid":"5ae8b6c22a3e0da91010e4af"},"Name":"Sclareol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
 {"_id":{"$oid":"5ae8b8bf2a3e0da91010e4bc"},"Name":"Geranylacetat","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607ab"}}
-{"_id":{"$oid":"5afc8814ff760f4bcc140d95"},"Name":"(F) Moleklülummoleki","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607ad"}}
 {"_id":{"$oid":"5b0b908bfb3b018964b72b40"},"Name":"α- und β-Pinen","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607af"}}
 {"_id":{"$oid":"5b0b9090fb3b018964b72b41"},"Name":"p-Cymen","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607af"}}
 {"_id":{"$oid":"5b0b9090fb3b018964b72b42"},"Name":"Myrcen","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607af"}}
@@ -36,7 +35,7 @@
 {"_id":{"$oid":"5b0b9091fb3b018964b72b46"},"Name":"Vetiveron","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
 {"_id":{"$oid":"5b0b9091fb3b018964b72b47"},"Name":"Menthol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
 {"_id":{"$oid":"5b0b9091fb3b018964b72b48"},"Name":"Citronellol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
-{"_id":{"$oid":"5b0b9091fb3b018964b72b49"},"Name":"α-Terpineol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
+{"_id":{"$oid":"5b0b9091fb3b018964b72b49"},"Name":"Terpineol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
 {"_id":{"$oid":"5b0b9091fb3b018964b72b4a"},"Name":"Borneol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
 {"_id":{"$oid":"5b0b9091fb3b018964b72b4b"},"Name":"Fenchol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
 {"_id":{"$oid":"5b0b9091fb3b018964b72b4c"},"Name":"Nerol ","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607b1"}}
@@ -59,7 +58,6 @@
 {"_id":{"$oid":"5b0b9093fb3b018964b72b5d"},"Name":"Farnesol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
 {"_id":{"$oid":"5b0b9093fb3b018964b72b5e"},"Name":"Bisabolol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
 {"_id":{"$oid":"5b0b9093fb3b018964b72b5f"},"Name":"Cedrol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
-{"_id":{"$oid":"5b3cde6c7a2b4240989c1e8f"},"Name":"Bergamotten","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bb"}}
 {"_id":{"$oid":"5b0b9093fb3b018964b72b60"},"Name":"Dauctol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
 {"_id":{"$oid":"5b0b9094fb3b018964b72b61"},"Name":"Italidion","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
 {"_id":{"$oid":"5b0b9094fb3b018964b72b62"},"Name":"Incensol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bd"}}
@@ -117,3 +115,4 @@
 {"_id":{"$oid":"5b0b9099fb3b018964b72b96"},"Name":"Furocumarine","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607a9"}}
 {"_id":{"$oid":"5b0b9099fb3b018964b72b97"},"Name":"Phenylethylalkohol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0502a3e0da40c4607a3"}}
 {"_id":{"$oid":"5b0b9099fb3b018964b72b98"},"Name":"Methylethylakohol","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0502a3e0da40c4607a3"}}
+{"_id":{"$oid":"5b3cde6c7a2b4240989c1e8f"},"Name":"Bergamotten","IsGeneral":false,"SubstanceId":{"$oid":"5ae3f0512a3e0da40c4607bb"}}
