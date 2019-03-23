@@ -19,6 +19,7 @@
                 <label>@Resources.EssentialOil_NameLatin</label>
             </th>
             <th></th>
+            <th></th>
         </tr>
 
         foreach (var alphabeticalIndex in Model.AlphabeticalIndexes)
@@ -28,6 +29,7 @@
                 <td class="italic">
                     <label>@alphabeticalIndex</label>
                 </td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -44,6 +46,12 @@
                         @* Column is hidden on sm and xs devices.*@
                         <td class="d-none d-md-block">
                             @Html.DisplayFor(modelItem => item.NameLatin)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(item.PictureFileName))
+                            {
+                                <img id="picture-container" width="50" height="50" src="@item.PictureDataAsStringDisplay"/>
+                            }
                         </td>
                         <td>
                             @* Button is triggered in SearchEssentialOil.js *@
