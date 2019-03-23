@@ -22,7 +22,7 @@
     "Duftfinder": {
       "commandName": "Project",
       "launchBrowser": true,
-      "https_port": 443,
+      "sslPort": 443,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -30,7 +30,7 @@
     },
     "Docker": {
       "commandName": "Docker",
-      "https_port": 443,
+      "sslPort": 443,
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
