@@ -27,13 +27,21 @@ namespace Duftfinder.Web.Helpers
 			//Image picture = new WebImage(uploadFile.InputStream);
 			IImageDecoder decoder = new JpegDecoder();
 			var picture = Image.Load(uploadFile.OpenReadStream(), decoder);
-			//if (picture.Width > 700)
-			//{
-			picture.Mutate(x =>
-					x.Resize(700, 400)
-				//.Grayscale()
-			); //  .Resize(700, 400, true);
-			//}
+			if (picture.Width > 500)
+			{
+				picture.Mutate(x =>
+					x.Resize(500, 0)
+
+				);
+			}
+
+			if (picture.Height > 700)
+			{
+				picture.Mutate(x =>
+					x.Resize(0, 700)
+
+				);
+			}
 
 			Stream outStream = new MemoryStream();
 			picture.Save(outStream, new JpegEncoder());
