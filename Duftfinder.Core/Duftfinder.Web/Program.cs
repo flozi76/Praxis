@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -15,8 +17,21 @@ namespace Duftfinder
 
 		public static IWebHostBuilder CreateWebHostBuilder(string[] args)
 		{
+			//var cert = new X509Certificate2("localhost.pfx", "duftfinder1");
 			return WebHost.CreateDefaultBuilder(args)
-				.UseKestrel()
+				.UseKestrel(
+					//options =>
+					//{
+					//	// Configure the Url and ports to bind to
+					//	// This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
+					//	// overridden if you call UseIisIntegration() and host behind IIS/IIS Express
+					//	options.Listen(IPAddress.Loopback, 80);
+					//	options.Listen(IPAddress.Loopback, 449, listenOptions =>
+					//	{
+					//		listenOptions.UseHttps("localhost.pfx", "duftfinder1");
+					//	});
+					//}
+					)
 				.ConfigureServices(services => services.AddAutofac())
 				.UseApplicationInsights()
 				.ConfigureLogging((hostingContext, logging) =>
