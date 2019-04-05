@@ -50,9 +50,10 @@
             beforeSend: function() {},
             success: function(result) {
                 console.log("displayUploadedPicture succeeded");
+                console.log("displaying image: ", result);
                 // Show uploaded picture in container, hide error message and loader.
-                $("#picture-container").attr("src", result.ImageDisplayString);
-                $("#fake-file-input").val(result.FileName);
+                $("#picture-container").attr("src", result.imageDisplayString);
+                $("#fake-file-input").val(result.fileName);
 
                 // Show "Bild entfernen" button.
                 $("#essential-oil-form #remove-picture-container").removeClass("display-none");
