@@ -24,7 +24,7 @@ namespace Duftfinder
 						// Configure the Url and ports to bind to
 						// This overrides calls to UseUrls and the ASPNETCORE_URLS environment variable, but will be 
 						// overridden if you call UseIisIntegration() and host behind IIS/IIS Express
-						//options.Listen(IPAddress.Loopback, 80);
+						//options.Listen(IPAddress.Any, 80);
 						//options.Listen(IPAddress.Loopback, 443, listenOptions => {
 						//	listenOptions.UseHttps("localhost.pfx", "duftfinder1");
 						//});
@@ -39,7 +39,7 @@ namespace Duftfinder
 					logging.AddDebug();
 					logging.AddEventSourceLogger();
 				})
-				.UseUrls("http://*:80", "https://*:443")
+				//.UseUrls("http://*:80", "https://*:443")
 				.UseStartup<Startup>()
 				.UseContentRoot(Directory.GetCurrentDirectory());
 		}
