@@ -86,11 +86,13 @@ namespace Duftfinder.Web.Models
 			get
 			{
 				IList<KeyValuePair<string, string>> categoryList = new List<KeyValuePair<string, string>>();
-
-				foreach (var category in Categories)
+				if (Categories != null)
 				{
-					CategoryValue = category.Name;
-					categoryList.Add(new KeyValuePair<string, string>(category.Id, CategoryValueDisplayName));
+					foreach (var category in Categories)
+					{
+						CategoryValue = category.Name;
+						categoryList.Add(new KeyValuePair<string, string>(category.Id, CategoryValueDisplayName));
+					}
 				}
 
 				return categoryList;
@@ -126,11 +128,14 @@ namespace Duftfinder.Web.Models
 			get
 			{
 				IList<string> firstLetterList = new List<string>();
-				foreach (var assignValueViewModel in AssignEssentialOils)
+				if (AssignEssentialOils != null)
 				{
-					// Add first letter to list, if it doesn't already exist.
-					var firstLetter = assignValueViewModel.AssignedValueName.Substring(0, 1).ToUpper();
-					if (!firstLetterList.Contains(firstLetter)) firstLetterList.Add(firstLetter);
+					foreach (var assignValueViewModel in AssignEssentialOils)
+					{
+						// Add first letter to list, if it doesn't already exist.
+						var firstLetter = assignValueViewModel.AssignedValueName.Substring(0, 1).ToUpper();
+						if (!firstLetterList.Contains(firstLetter)) firstLetterList.Add(firstLetter);
+					}
 				}
 
 				return firstLetterList;

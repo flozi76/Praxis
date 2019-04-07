@@ -74,10 +74,13 @@ namespace Duftfinder.Web.Models
 			{
 				IList<KeyValuePair<string, string>> substanceList = new List<KeyValuePair<string, string>>();
 
-				foreach (var substance in Substances)
+				if (Substances != null)
 				{
-					SubstanceValue = substance.Name;
-					substanceList.Add(new KeyValuePair<string, string>(substance.Id, SubstanceValueDisplayName));
+					foreach (var substance in Substances)
+					{
+						SubstanceValue = substance.Name;
+						substanceList.Add(new KeyValuePair<string, string>(substance.Id, SubstanceValueDisplayName));
+					}
 				}
 
 				return substanceList;
