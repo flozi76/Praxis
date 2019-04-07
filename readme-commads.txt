@@ -16,3 +16,6 @@ docker run -d -p 8080:80 -p 44380:443 -e MongoDatabaseName=duftfinder -e MongoCo
 
 # connect container bash
 docker exec -it duftfinder bash
+
+# connect aws container
+ssh -i E:\Develop\aws\awsLinuxKP.pem ec2-user@duftfinder.ch
