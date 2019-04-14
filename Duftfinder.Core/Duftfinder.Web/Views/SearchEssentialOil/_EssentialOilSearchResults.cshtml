@@ -21,7 +21,7 @@
             <th></th>
             <th></th>
         </tr>
-
+        int picNumber = 0;
         foreach (var alphabeticalIndex in Model.AlphabeticalIndexes)
         {
             @* List all alphabetical indexes. (A-Z)*@
@@ -33,6 +33,7 @@
                 <td></td>
                 <td></td>
             </tr>
+            
 
             // Order essential oils by their alphabetical indexes.
             foreach (var item in Model.SearchEssentialOilResults)
@@ -50,7 +51,15 @@
                         <td>
                             @if (!string.IsNullOrWhiteSpace(item.PictureFileName))
                             {
-                                <img id="picture-container" width="50" height="50" src="@item.PictureDataAsStringDisplay"/>
+                                picNumber = picNumber+1;
+                                <img id="picture-container" picnumber="@picNumber" class="picture" width="50" height="50" src="@item.PictureDataAsStringDisplay"/>
+                                
+                                <div>
+                                    <span id="pop-up_@picNumber" class="picture-popup">
+
+                                        <img src="@item.PictureDataAsStringDisplay"/>
+                                    </span>
+                                </div>
                             }
                         </td>
                         <td>

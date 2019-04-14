@@ -33,6 +33,9 @@
             </th>
             <th></th>
         </tr>
+        @{
+            int picNumber = 0;
+        }
 
         @foreach (var alphabeticalIndex in Model.AlphabeticalIndexes)
         {
@@ -61,7 +64,15 @@
                         <td>
                             @if (!string.IsNullOrWhiteSpace(essentialOilViewModel.PictureFileName))
                             {
-                                <img id="picture-container" width="50" height="50" src="@essentialOilViewModel.PictureDataAsStringDisplay"/>
+                                picNumber = picNumber + 1;
+                                <img id="picture-container" picnumber="@picNumber" class="picture" width="50" height="50" src="@essentialOilViewModel.PictureDataAsStringDisplay"/>
+
+                                <div>
+                                    <span id="pop-up_@picNumber" class="picture-popup">
+
+                                        <img src="@essentialOilViewModel.PictureDataAsStringDisplay"/>
+                                    </span>
+                                </div>
                             }
                         </td>
                         <td>

@@ -323,10 +323,20 @@ input.file {
     #search-essential-oil-text { max-width: 260px !important; }
 }
 
+.picture-popup {
+    position: absolute;
+    display: none;
+    position: fixed;
+    right: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid lightblue;
+}
 /* SEARCH EFFECTS
 ----------------------------------------------------------*/
-
-#search-effects-container .form-control { display: inline; }
+#search-effects-container .form-control {
+    display: inline;
+}
 
 #search-effects-container .slider.slider-horizontal { margin-top: 7px; }
 

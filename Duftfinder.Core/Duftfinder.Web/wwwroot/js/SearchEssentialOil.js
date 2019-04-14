@@ -31,6 +31,7 @@
         $("#clear-search").click(function(e) {
             clearSearchInput();
         });
+
     }
 
     function initializeElementsForshowEssentialOilSearchResults() {
@@ -39,6 +40,18 @@
             function(e) {
                 showEssentialOilDetails(e);
             });
+
+        $(".picture").mouseover(function () {
+            var picnumber = $(this).attr("picnumber");
+            console.log("Mouse moving over picture " + picnumber);
+            $("#pop-up_"+picnumber).show();
+        });
+
+        $(".picture").mouseout(function () {
+            var picnumber = $(this).attr("picnumber");
+            console.log("Mouse leaved picture");
+            $("#pop-up_"+picnumber).hide();
+        });
     }
 
     function initializeElementsForShowEssentialOilDetails() {
