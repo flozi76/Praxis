@@ -75,10 +75,13 @@ namespace Duftfinder.Web.Models
 			{
 				IList<SelectListItem> categoriesList = new List<SelectListItem>();
 
-				foreach (var category in Categories)
+				if (Categories != null)
 				{
-					CategoryValue = category.Name;
-					categoriesList.Add(new SelectListItem {Text = CategoryValueDisplayName, Value = category.Id});
+					foreach (var category in Categories)
+					{
+						CategoryValue = category.Name;
+						categoriesList.Add(new SelectListItem { Text = CategoryValueDisplayName, Value = category.Id });
+					}
 				}
 
 				return categoriesList;
