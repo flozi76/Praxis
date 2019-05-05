@@ -80,10 +80,13 @@ namespace Duftfinder.Web.Models
 			{
 				IList<SelectListItem> substancesList = new List<SelectListItem>();
 
-				foreach (var substance in Substances)
+				if (Substances != null)
 				{
-					SubstanceValue = substance.Name;
-					substancesList.Add(new SelectListItem {Text = SubstanceValueDisplayName, Value = substance.Id});
+					foreach (var substance in Substances)
+					{
+						SubstanceValue = substance.Name;
+						substancesList.Add(new SelectListItem {Text = SubstanceValueDisplayName, Value = substance.Id});
+					}
 				}
 
 				return substancesList;
