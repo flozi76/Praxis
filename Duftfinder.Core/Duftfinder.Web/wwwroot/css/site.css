@@ -284,6 +284,16 @@ input.file {
     position: absolute;
 }
 
+.textarea-noborder {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
 #assign-essential-oil-form #effect label,
 #assign-effect-form #essential-oil label,
 #assign-molecule-form #essential-oil label

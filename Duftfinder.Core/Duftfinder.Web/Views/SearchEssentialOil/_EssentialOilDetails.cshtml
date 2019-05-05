@@ -52,7 +52,8 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-12">
-                <label>@Html.DisplayFor(model => model.Description)</label>
+                @*<label>@Html.DisplayFor(model => model.Description)</label>*@
+                @Html.TextAreaFor(model => model.Description, 11, 0, new { @class = "form-control-plaintext textarea-noborder", @readonly = "readonly" })
             </div>
         </div>
 
