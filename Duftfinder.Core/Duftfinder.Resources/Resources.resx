@@ -459,6 +459,9 @@
   <data name="Layout_Version" xml:space="preserve">
     <value>Version:</value>
   </data>
+  <data name="Layout_LastUpdated" xml:space="preserve">
+    <value>Aktualisiert:</value>
+  </data>
   <data name="Molecule_Create" xml:space="preserve">
     <value>Neues Molekül erfassen</value>
   </data>

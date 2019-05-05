@@ -1384,6 +1384,15 @@ namespace Duftfinder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktualisiert:.
+        /// </summary>
+        public static string Layout_LastUpdated {
+            get {
+                return ResourceManager.GetString("Layout_LastUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anmelden.
         /// </summary>
         public static string Layout_Login {

@@ -339,8 +339,8 @@ input.file {
     position: fixed;
     right: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    border: 5px solid lightblue;
+    transform: translateY(-20%);
+    border: 0.2em solid lightblue;
 }
 /* SEARCH EFFECTS
 ----------------------------------------------------------*/

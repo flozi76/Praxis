@@ -77,8 +77,10 @@
                 // HtmlString applicationVersion = Html.ApplicationVersion();
                 // TODO: v
                 var applicationVersion = new HtmlString(@Configuration["AppVersion"]);
+                var lastUpdated = new HtmlString(@Configuration["LastUpdated"]);
             }
             <span class="margin-left-big">@Resources.Layout_Version @applicationVersion</span>
+            <span class="margin-left-big">@Resources.Layout_LastUpdated @lastUpdated</span>
 
             @* Show "Anmelden or "Abmelden" *@
             @if (User.Identity.IsAuthenticated)
