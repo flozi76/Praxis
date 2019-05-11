@@ -337,7 +337,7 @@ input.file {
     position: absolute;
     display: none;
     position: fixed;
-    right: 50%;
+    right: 35%;
     top: 50%;
     transform: translateY(-20%);
     border: 0.2em solid lightblue;
